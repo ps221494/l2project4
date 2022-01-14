@@ -17,6 +17,7 @@ class CreateIngredientenTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments("id")->unsigned(false);
             $table->string("Name")->lenght(100)->nullable(false);
+            $table->decimal('prijs',9,2);
             $table->timestamps();
         });
     }

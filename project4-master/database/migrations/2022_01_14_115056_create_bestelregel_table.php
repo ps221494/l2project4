@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBestellingenTable extends Migration
+class CreateBestelregelTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateBestellingenTable extends Migration
      */
     public function up()
     {
-        Schema::create('bestellingen', function (Blueprint $table) {
+        Schema::create('bestelregel', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments("id")->unsigned(false);
-            $table->unsignedInteger('customer_id')->value(11)->unsigned(false);
-            
+            $table->unsignedInteger('bestelling_id')->value(11)->unsigned(false);
+            $table->unsignedInteger('klantpizza_id')->value(11)->unsigned(false);
             $table->timestamps();
-            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('bestelling_id')->references('id')->on('bestellingen');
+            $table->foreign('klantpizza_id')->references('id')->on('klantpizza');
         });
     }
 
@@ -30,6 +31,6 @@ class CreateBestellingenTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bestellingen');
+        Schema::dropIfExists('bestelregel');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePizzasIngredientenTable extends Migration
+class CreateKlantpizzaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,12 @@ class CreatePizzasIngredientenTable extends Migration
      */
     public function up()
     {
-        Schema::create('pizzas_ingredienten', function (Blueprint $table) {
+        Schema::create('klantpizza', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            
             $table->increments("id")->unsigned(false);
             $table->unsignedInteger('pizza_id')->value(11)->unsigned(false);
-            $table->unsignedInteger('ingredient_id')->value(11)->unsigned(false);
-
+            $table->timestamps();
             $table->foreign('pizza_id')->references('id')->on('pizzas');
-            $table->foreign('ingredient_id')->references('id')->on('ingredienten');
-
         });
     }
 
@@ -33,6 +29,6 @@ class CreatePizzasIngredientenTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pizzas_ingredienten');
+        Schema::dropIfExists('klantpizza');
     }
 }

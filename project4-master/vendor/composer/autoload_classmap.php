@@ -167,6 +167,7 @@ return array(
     'Database\\Seeders\\CustomerSeeder' => $baseDir . '/database/seeders/CustomerSeeder.php',
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
     'Database\\Seeders\\EmployeeSeeder' => $baseDir . '/database/seeders/EmployeeSeeder.php',
+    'Database\\Seeders\\PizzaSeeder' => $baseDir . '/database/seeders/PizzaSeeder.php',
     'Database\\Seeders\\RoleSeeder' => $baseDir . '/database/seeders/RoleSeeder.php',
     'Database\\Seeders\\UserRoleSeeder' => $baseDir . '/database/seeders/UserRoleSeeder.php',
     'Database\\Seeders\\UserSeeder' => $baseDir . '/database/seeders/UserSeeder.php',
