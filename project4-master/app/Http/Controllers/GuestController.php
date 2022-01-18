@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\guest;
+use App\Models\pizzas;
 use Illuminate\Http\Request;
 
 class GuestController extends Controller
@@ -14,7 +15,8 @@ class GuestController extends Controller
      */
     public function index()
     {
-        return view('guest.index');
+        $pizzas = pizzas::all();
+        return view('guest.index',["pizzas" => $pizzas]);
     }
 
     /**

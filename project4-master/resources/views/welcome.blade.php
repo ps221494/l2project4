@@ -15,7 +15,7 @@
                 when an unknown printer took a galley of type and scrambled it to make a type specimen book.
             </p>
             <div class="flex justify-center flex-wrap gap-6">
-                <a href="#" class="p-2 m-2 rounded-lg text-black font-semibold hover:text-White transition duration-300 hover:no-underline bg-green-500">Order Pizza</a>
+                <a href="guest" class="p-2 m-2 rounded-lg text-White font-semibold hover:text-White transition duration-300 hover:no-underline bg-green-500">See All Pizza's</a>
             </div>
         </div>
         <!-- Image  -->

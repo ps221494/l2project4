@@ -1,7 +1,7 @@
-<header class="sm:w-5/6 sm:mx-auto sm:py-3">
+<header class="container sm:mx-auto sm:py-3">
     <div class="grid grid-cols-1 sm:grid-cols-2 h-36">
         <div class="h-44 md:justify-strat justify-center">
-            <img class="p-2 h-full" src="img/Logo.png" alt="logo" />
+            <a href="/" class=""><img class="p-2 h-full" src="img/Logo.png" alt="logo" /></a>
         </div>
         @if (Route::has('login'))
         <div class="h-44 flex flex-1 sm:justify-end justify-center items-center ">

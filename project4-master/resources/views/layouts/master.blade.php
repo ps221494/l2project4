@@ -4,9 +4,9 @@
 </head>
 @include('layouts/parts.meta')
 
-<body class="">
+<body class="container">
     @include('layouts/parts.header')
-    <div>
+    <div class="">
         @yield('content')
     </div>
     @include('layouts/parts.footer')
