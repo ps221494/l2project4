@@ -20,7 +20,7 @@ class CreateKlantpizzaIngredientenTable extends Migration
             $table->unsignedInteger('ingredient_id')->value(11)->unsigned(false);
             $table->timestamps();
 
-            $table->foreign('klantpizza_id')->value(11)->
+            $table->foreign('klantpizza_id')->references('id')->on('klantpizza');
             $table->foreign('ingredient_id')->references('id')->on('ingredienten');
         });
     }
