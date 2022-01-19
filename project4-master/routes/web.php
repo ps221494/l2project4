@@ -6,6 +6,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::group(['middleware'=>'auth'], function(){
     Route::get('/dashboard', function () {
@@ -37,6 +35,10 @@ Route::group(['middleware'=>'auth'], function(){
     Route::resource('customer', CustomerController::class);
     Route::resource('store', StoreController::class);
 });
+
+Route::get('/', [ProductController::class, 'productList'])->name('products.list');
+Route::get('cart', [ProductController::class, 'cartList'])->name('cart.list');
+Route::post('cart', [ProductController::class, 'addToCart'])->name('cart.store');
 
 
 require __DIR__.'/auth.php';
