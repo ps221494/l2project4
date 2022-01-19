@@ -20,5 +20,10 @@ class PizzaSeeder extends Seeder
             'Name' => 'Hawaii',
             'Beschrijving' => 'lekker pizza met ananas, je moet er van houden',
         ]);
+        
+        DB::table('pizzas')->insert([
+            'Name' => 'Margherita',
+            'Beschrijving' => 'Pizza Margherita ingrediënten tomaten, mozzarella.',
+        ]);
     }
 }
