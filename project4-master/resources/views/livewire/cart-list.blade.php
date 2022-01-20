@@ -59,7 +59,7 @@
             Total: ${{ Cart::getTotal() }}
         </div>
         <div class="mt-5">
-            <a href="#" class="px-6 py-2 text-red-800 bg-red-300" wire:click.prevent="clearAllCart">Remove All Cart</a>
+            <a href="/" class="px-6 py-2 text-white bg-green-300" >Back to shop</a>
         </div>
 
     </div>
