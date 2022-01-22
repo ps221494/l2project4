@@ -71,4 +71,8 @@ class User extends Authenticatable
         }
     }
     // ************************************************************************
+
+    public function orders(){
+        return $this->hasmany(Oder::class, 'user_id');
+    }
 }

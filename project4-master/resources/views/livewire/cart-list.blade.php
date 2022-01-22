@@ -27,7 +27,7 @@
                 <tr>
                     <td class="hidden pb-4 md:table-cell">
                         <a href="#">
-                            <img src="img/pizza.png"  alt=""class="w-20 rounded" alt="Thumbnail">
+                            <img src="img/pizza.png" alt="" class="w-20 rounded" alt="Thumbnail">
                         </a>
                     </td>
                     <td>
@@ -59,7 +59,13 @@
             Total: ${{ Cart::getTotal() }}
         </div>
         <div class="mt-5">
-            <a href="/" class="px-6 py-2 text-white bg-green-300" >Back to shop</a>
+            <a href="/" class="px-6 py-2 text-white bg-green-300">Back to shop</a>
+        </div>
+        <div class="mt-5">
+            <form action="{{route('cart.order')}}" method="post">
+                @csrf
+                <input type="submit" class="px-6 py-2 text-white bg-green-300" value="Bestelling plaatsen" />
+            </form>
         </div>
 
     </div>
