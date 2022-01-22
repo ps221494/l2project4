@@ -21,7 +21,7 @@ class CreateKlantpizzaIngredientenTable extends Migration
             $table->timestamps();
 
             $table->foreign('klantpizza_id')->references('id')->on('klantpizza');
-            $table->foreign('ingredient_id')->references('id')->on('ingredienten');
+            $table->foreign('ingredient_id')->references('id')->on('ingredientens');
         });
     }
 

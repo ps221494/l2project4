@@ -9,11 +9,23 @@
             <!--Card 1-->
             @foreach($pizzas as $items)
             <div class="rounded overflow-hidden shadow-lg">
-                <a href="#"><img class="w-full" src="img/pizza_home_page_background.png" alt="Pizza images" /></a>
+                <a href="{{route('guest.show',$items->id)}}"><img class="w-full" src="img/pizza_home_page_background.png" alt="Pizza images" /></a>
                 <div class="px-6 py-4">
                     <div class="font-bold text-xl mb-2">{{$items->Name}}</div>
                     <p class="text-gray-700 text-base">{{$items->Beschrijving}}</p>
-                    <a href="guest" class="p-2 rounded-lg text-White font-semibold hover:text-White transition duration-300 hover:no-underline bg-green-500">Bestellen</a>
+                    <select class="form-control rounded mb-2">
+                        <option>(25cm) NY style</option>
+                        <option>(30cm) NY style</option>
+                        <option>(35cm) NY style</option>
+                    </select>
+                    <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" value="{{ $items->id }}" name="id">
+                        <input type="hidden" value="{{ $items->Name }}" name="name">
+                        <input type="hidden" value="12" name="price">
+                        <input type="hidden" value="1" name="quantity">
+                        <button class="p-2 rounded-lg text-White font-semibold hover:text-White transition duration-300 hover:no-underline bg-green-500">Bestellen</button>
+                    </form>
                 </div>
             </div>
             @endforeach

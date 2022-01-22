@@ -46,9 +46,11 @@ class GuestController extends Controller
      * @param  \App\Models\guest  $guest
      * @return \Illuminate\Http\Response
      */
-    public function show(guest $guest)
+    public function show($id)
     {
         //
+        $pizza = pizzas::find($id);
+        return view('guest.pizza', compact('pizza'));
     }
 
     /**

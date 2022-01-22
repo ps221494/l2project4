@@ -13,13 +13,12 @@ class CreateBestellingenTable extends Migration
      */
     public function up()
     {
-        Schema::create('bestellingen', function (Blueprint $table) {
+        Schema::create('bestellingens', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments("id")->unsigned(false);
             $table->unsignedInteger('customer_id')->value(11)->unsigned(false);
             
             $table->timestamps();
-            $table->foreign('customer_id')->references('id')->on('customers');
         });
     }
 
@@ -30,6 +29,6 @@ class CreateBestellingenTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bestellingen');
+        Schema::dropIfExists('bestellingens');
     }
 }

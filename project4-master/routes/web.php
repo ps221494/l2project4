@@ -6,6 +6,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/bestelling',[CartController::class, 'Bestelling'])->name('Bestelling')->middleware('auth');
 Route::resource('guest', GuestController::class);
+Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
+Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
+Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
+Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
+Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
 
 Route::group(['middleware'=>'auth'], function(){
     Route::get('/dashboard', function () {
@@ -37,6 +45,5 @@ Route::group(['middleware'=>'auth'], function(){
     Route::resource('employee', EmployeeController::class);
     Route::resource('customer', CustomerController::class);
 });
-
 
 require __DIR__.'/auth.php';

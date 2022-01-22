@@ -13,7 +13,7 @@ class CreatePizzasIngredientenTable extends Migration
      */
     public function up()
     {
-        Schema::create('pizzas_ingredienten', function (Blueprint $table) {
+        Schema::create('ingredienten_pizzas', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             
             $table->increments("id")->unsigned(false);
@@ -21,7 +21,7 @@ class CreatePizzasIngredientenTable extends Migration
             $table->unsignedInteger('ingredient_id')->value(11)->unsigned(false);
 
             $table->foreign('pizza_id')->references('id')->on('pizzas');
-            $table->foreign('ingredient_id')->references('id')->on('ingredienten');
+            $table->foreign('ingredient_id')->references('id')->on('ingredientens');
 
         });
     }
@@ -33,6 +33,6 @@ class CreatePizzasIngredientenTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pizzas_ingredienten');
+        Schema::dropIfExists('ingredienten_pizzas');
     }
 }

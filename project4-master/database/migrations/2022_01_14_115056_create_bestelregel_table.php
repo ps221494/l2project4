@@ -20,7 +20,7 @@ class CreateBestelregelTable extends Migration
             $table->unsignedInteger('klantpizza_id')->value(11)->unsigned(false);
             $table->decimal('groote' ,1,1);
             $table->timestamps();
-            $table->foreign('bestelling_id')->references('id')->on('bestellingen');
+            $table->foreign('bestelling_id')->references('id')->on('bestellingens');
             $table->foreign('klantpizza_id')->references('id')->on('klantpizza');
         });
     }
