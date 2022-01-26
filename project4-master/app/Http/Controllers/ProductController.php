@@ -48,7 +48,7 @@ class ProductController extends Controller
             $order = new Oder();
             $order->user_id = Auth::id();
             $order->save();
-            return view('store.pizza',);
+            return redirect()->route('cart.pizza');
         }
     }
 
@@ -63,7 +63,7 @@ class ProductController extends Controller
                 $order_detail->oder_id = $oid->id;
             }
             $order_detail->product_id = $item->id;
-            $order_detail->quantity = 1;
+            $order_detail->quantity = $item->quantity;
             $order_detail->save();
         }
         \Cart::clear();

@@ -39,7 +39,7 @@ Route::group(['middleware'=>'auth'], function(){
 Route::get('/', [ProductController::class, 'productList'])->name('products.list');
 Route::get('cart', [ProductController::class, 'cartList'])->name('cart.list');
 Route::post('cart', [ProductController::class, 'addToCart'])->name('cart.store');
-Route::post('order', [ProductController::class, 'addToOrder'])->middleware('auth')->name('cart.order');
-Route::get('order', [ProductController::class, 'Order'])->middleware('auth')->name('cart.order');
+Route::post('order', [ProductController::class, 'addToOrder'])->middleware('auth')->name('cart.pizza');
+Route::get('order', [ProductController::class, 'Order'])->middleware('auth')->name('cart.pizza');
 Route::post('status', [ProductController::class, 'bestellingFinsh'])->middleware('auth')->name('cart.status');
 require __DIR__.'/auth.php';

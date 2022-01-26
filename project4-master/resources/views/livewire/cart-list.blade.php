@@ -62,7 +62,7 @@
             <a href="/" class="px-6 py-2 text-white bg-green-300">Back to shop</a>
         </div>
         <div class="mt-5">
-            <form action="{{route('cart.order')}}" method="post">
+            <form action="{{route('cart.pizza')}}" method="post">
                 @csrf
                 <input type="submit" class="px-6 py-2 text-white bg-green-300" value="Bestelling plaatsen" />
             </form>
