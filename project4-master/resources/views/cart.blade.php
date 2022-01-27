@@ -2,7 +2,7 @@
 @section('pagetitle','Login')
 @section('content')
 
-<div class="container px-6 mx-auto">
+<div class="container px-6 mx-auto h-screen">
     
     <div class="flex justify-center my-6">
         

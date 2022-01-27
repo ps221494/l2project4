@@ -33,6 +33,9 @@
                     @endforeach
                 </div>
             </div>
+            <div class="py-4">
+                <a href="{{route('guest.update')}}" class="px-3 py-2 bg-yellow-300 text-white text-xs font-bold uppercase rounded">Bewwerken </a>
+            </div>
         </div>
     </div>
 </section>
