@@ -1,23 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Login.Models;
-using MySql.Data.MySqlClient;
-using System.Data.SqlClient;
-using System.Configuration;
-using System.Data;
 
 namespace Login
 {
@@ -82,68 +67,52 @@ namespace Login
             List<Users> users = new List<Users>();
             users = _usersdb.GetUsers();
             string name = TxtUserName.Text;
-
-            for (int i = 0; i < users.Count; i++)
+            try
             {
-                if (users[i].name == name )
+
+
+                for (int i = 0; i < users.Count; i++)
                 {
-                    adminwindow win = new adminwindow();
-                    string password; 
-                    string password1 = "$2a$";
-                    string password2;
-                    string password3 = users[i].password;
-                    password2 = password3.Substring(4 , password3.Length-4);
-                    password = password1 + password2;
-
-                    bool Correct = BCrypt.Net.BCrypt.Verify(txtPassword.Password , password);
-                    if (Correct == true)
+                    if (users[i].name == name)
                     {
-                        switch (users[i].RoleName)
+                        adminwindow win = new adminwindow();
+                        string password;
+                        string password1 = "$2a$";
+                        string password2;
+                        string password3 = users[i].password;
+                        password2 = password3.Substring(4, password3.Length - 4);
+                        password = password1 + password2;
+
+                        bool Correct = BCrypt.Net.BCrypt.Verify(txtPassword.Password, password);
+                        if (Correct == true)
                         {
-                            case "management":
-                                MessageBox.Show("manager login");
-                                break;
-                            case "admin":
-                                MessageBox.Show("welkom " + name);
-                                win.Show();
-                                this.Close();
+                            switch (users[i].RoleName)
+                            {
+                                case "management":
+                                case "admin":
+                                    MessageBox.Show("welkom " + name);
+                                    win.Show();
+                                    this.Close();
 
-                                break;
-                            default:
-                                break;
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("error");
+                        else
+                        {
+                            MessageBox.Show("Password is incorrect!!");
+                        }
+
                     }
 
                 }
-
             }
-       //     users = _usersdb.GetUsers();
-          /*  string userName = TxtUserName.Text;
-            string Password = TxtPassword.Password;
-            
-
-            if (!_usersdb.VerifyLogin(userName, Password))
+            catch (Exception)
             {
-                MessageBox.Show("error");
+
+                throw;
             }
-            else
-            {
-                MessageBox.Show("gelukt");
-            }*/
-            
-
-
-            //           ````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````` MessageBox.Show(LstUsers);
-
-
-            //   this.Close();
-            // win.Show();
-
-
         }
     }
 }
