@@ -17,13 +17,13 @@ class PizzaSeeder extends Seeder
     public function run()
     {
         DB::table('pizzas')->insert([
-            'Name' => 'Hawaii',
-            'Beschrijving' => 'lekker pizza met ananas, je moet er van houden',
+            'name' => 'Hawaii',
+            'description' => 'lekker pizza met ananas, je moet er van houden',
         ]);
         
         DB::table('pizzas')->insert([
-            'Name' => 'Margherita',
-            'Beschrijving' => 'Pizza Margherita ingrediënten tomaten, mozzarella.',
+            'name' => 'Margherita',
+            'description' => 'Pizza Margherita ingrediënten tomaten, mozzarella.',
         ]);
     }
 }

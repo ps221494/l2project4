@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBestellingenTable extends Migration
+class CreateIngredientPizzasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateBestellingenTable extends Migration
      */
     public function up()
     {
-        Schema::create('bestellingens', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments("id")->unsigned(false);
-            $table->unsignedInteger('customer_id')->value(11)->unsigned(false);
-            
+        Schema::create('ingredient_pizzas', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('pizza_id')->constrained();
+            $table->foreignId('ingredient_id')->constrained();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateBestellingenTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bestellingens');
+        Schema::dropIfExists('ingredient_pizzas');
     }
 }

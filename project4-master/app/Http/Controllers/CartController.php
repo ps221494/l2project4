@@ -26,7 +26,7 @@ class CartController extends Controller
         ]);
         session()->flash('success', 'Product is Added to Cart Successfully !');
 
-        return redirect()->route('cart.list');
+        return redirect()->route('guest.index');
     }
 
     public function updateCart(Request $request)
@@ -66,14 +66,8 @@ class CartController extends Controller
 
     public function Bestelling(Request $request)
     {
-        if(Auth::check()){
-            $cartItems = \Cart::getContent();
-            $bestelling = new bestellingen();
-            $bestelling->customer_id = Auth::id(); 
-            $bestelling->save();
-            return view('guest.bestellingKlant', compact('cartItems'));
-        }
-
+        $cartItems = \Cart::getContent();
+        return view('guest.bestelling', compact('cartItems'));
 
     }
 }

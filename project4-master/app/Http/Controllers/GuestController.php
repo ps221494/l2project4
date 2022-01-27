@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\guest;
-use App\Models\pizzas;
+use App\Models\Pizza;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GuestController extends Controller
 {
@@ -15,8 +17,9 @@ class GuestController extends Controller
      */
     public function index()
     {
-        $pizzas = pizzas::all();
-        return view('guest.index',["pizzas" => $pizzas]);
+        $pizzas = Pizza::all();
+        $cartItems = \Cart::getContent();
+        return view('guest.index', compact('pizzas', 'cartItems'));
     }
 
     /**
@@ -26,7 +29,15 @@ class GuestController extends Controller
      */
     public function create()
     {
-        //
+        //check if there is any pizza in cart 
+        //if there is nothing you get error message back.
+        $pizzaCount = \Cart::getContent()->count();
+        if ($pizzaCount > 0) {
+            $cartItems = \Cart::getContent();
+            return view('guest.bestelling', compact('cartItems'));
+        } else {
+            return redirect()->back()->with('error', 'Je moet een pizza kiezen als je wilt bestellen!');
+        }
     }
 
     /**
@@ -49,8 +60,8 @@ class GuestController extends Controller
     public function show($id)
     {
         //
-        $pizza = pizzas::find($id);
-        return view('guest.pizza', compact('pizza'));
+        //$pizza = pizzas::find($id);
+        //return view('guest.pizza', compact('pizza'));
     }
 
     /**
@@ -82,8 +93,10 @@ class GuestController extends Controller
      * @param  \App\Models\guest  $guest
      * @return \Illuminate\Http\Response
      */
-    public function destroy(guest $guest)
+    public function destroy(Request $request)
     {
         //
+        \Cart::remove($request->id);
+        return redirect('guest');
     }
 }

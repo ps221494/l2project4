@@ -4,7 +4,7 @@
 </head>
 @include('layouts/parts.meta')
 
-<body class="container">
+<body class="">
     @include('layouts/parts.header')
     <div class="">
         @yield('content')

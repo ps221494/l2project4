@@ -24,45 +24,4 @@
         </div>
     </div>
 </section>
-
-<!-- hero section -->
-<section class="hero-section relative sm:mt-20">
-    <h1 class="text-center font-semibold">Nu in aanbeding</h1>
-    <div class="sm:w-4/6 sm:mx-auto flex flex-col-reverse lg:flex-row items-center gap-12 mt-14 lg:mt-24">
-        <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-            <!--Card 1-->
-            <div class="rounded overflow-hidden shadow-lg">
-                <img class="w-full" src="img/pizza_home_page_background.png" alt="Mountain">
-                <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">Pizza Hawai</div>
-                    <p class="text-gray-700 text-base">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, Nonea! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                    </p>
-                </div>
-            </div>
-            <!--Card 2-->
-            <div class="rounded overflow-hidden shadow-lg">
-                <img class="w-full" src="img/pizza_home_page_background.png" alt="River">
-                <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">Pizza tonijn</div>
-                    <p class="text-gray-700 text-base">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, Nonea! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                    </p>
-                </div>
-            </div>
-
-            <!--Card 3-->
-            <div class="rounded overflow-hidden shadow-lg">
-                <img class="w-full" src="img/pizza_home_page_background.png" alt="Forest">
-                <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">Pizza magarita</div>
-                    <p class="text-gray-700 text-base">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, Nonea! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-</section>
 @endsection

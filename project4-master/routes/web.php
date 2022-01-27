@@ -25,7 +25,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/bestelling',[CartController::class, 'Bestelling'])->name('Bestelling')->middleware('auth');
+Route::get('/bestelling',[CartController::class, 'Bestelling'])->name('Bestelling');
 Route::resource('guest', GuestController::class);
 Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
 Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
@@ -44,6 +44,7 @@ Route::group(['middleware'=>'auth'], function(){
     Route::resource('user', UserController::class);
     Route::resource('employee', EmployeeController::class);
     Route::resource('customer', CustomerController::class);
+    
 });
 
 require __DIR__.'/auth.php';
