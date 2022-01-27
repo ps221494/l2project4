@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\ingredienten;
+use App\Models\Ingredient;
 use Illuminate\Database\Seeder;
 
 class ingredientenSeeder extends Seeder
@@ -15,16 +15,16 @@ class ingredientenSeeder extends Seeder
     {
         //
         $ingredienten = [
-            ['Name' => 'Tomatensaus', 'prijs' => 0.40],
-            ['Name' => 'mozzarella', 'prijs' => 0.50],
-            ['Name' => 'knoflookolie ', 'prijs' => 0.15],
-            ['Name' => 'kaas', 'prijs' => 0.15],
-            ['Name' => 'ananas ', 'prijs' => 0.25],
-            ['Name' => 'ham', 'prijs' => 0.25],
+            ['Name' => 'Tomatensaus', 'price' => 0.40],
+            ['Name' => 'mozzarella', 'price' => 0.50],
+            ['Name' => 'knoflookolie ', 'price' => 0.15],
+            ['Name' => 'kaas', 'price' => 0.15],
+            ['Name' => 'ananas ', 'price' => 0.25],
+            ['Name' => 'ham', 'price' => 0.25],
         ];
 
         foreach ($ingredienten as $ingredient){
-            ingredienten::create($ingredient);
+            Ingredient::create($ingredient);
         }
     }
 }

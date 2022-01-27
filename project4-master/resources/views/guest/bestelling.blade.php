@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('pagetitle','Login')
 @section('content')
-<div class="container py-10 px-20 flex justify-around">
+<div class="container h-screen py-10 px-20 flex justify-around">
     <div class="block p-6">
         @if(Auth::guest())
         <form>

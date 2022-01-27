@@ -19,7 +19,7 @@
                 <div class="h-52">
                     <div class="h-full">
                         <div class="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
-                            <div class="w-1/3 bg-cover flex items-center"><img alt="" src="img/pizza_home_page_background.png" alt="" /></div>
+                            <div class="w-1/3 bg-cover flex items-center"><a href="{{route('guest.show',$pizza->id)}}"><img src="img/pizza_home_page_background.png" alt="" /></a></div>
                             <div class="w-2/3 p-2">
                                 <h1 class="text-gray-900 font-bold text-2xl">{{$pizza->name}}</h1>
                                 <p class="mt-2 text-gray-600 text-sm">{{$pizza->description}}</p>

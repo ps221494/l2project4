@@ -60,8 +60,8 @@ class GuestController extends Controller
     public function show($id)
     {
         //
-        //$pizza = pizzas::find($id);
-        //return view('guest.pizza', compact('pizza'));
+        $pizza = Pizza::find($id);
+        return view('guest.pizza', compact('pizza'));
     }
 
     /**
