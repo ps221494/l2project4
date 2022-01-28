@@ -2,7 +2,11 @@
 @section('pagetitle','Login')
 @section('content')
 
+<<<<<<< HEAD
 <div class="container px-6 mx-auto h-screen">
+=======
+<div class="container px-6 mx-auto">
+>>>>>>> a2a321899eed45662c7d23c196de98e9731bbcee
     
     <div class="flex justify-center my-6">
         
