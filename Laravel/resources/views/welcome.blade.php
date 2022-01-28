@@ -2,7 +2,7 @@
 
 @section('pagetitle','Home')
 @section('content')
-<section class="relative">
+<section class="relative h-screen">
     <div class="sm:w-4/6 sm:mx-auto  flex flex-col-reverse lg:flex-row items-center gap-12 mt-14 lg:mt-12">
         <!-- Content -->
         <div class="flex flex-1 flex-col items-center lg:items-start">

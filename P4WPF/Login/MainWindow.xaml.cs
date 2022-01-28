@@ -100,7 +100,7 @@ namespace Login
                         }
                         else
                         {
-                            MessageBox.Show("Username and Password are incorrect!!");
+                            MessageBox.Show("Password are incorrect!!");
                         }
 
                     }
