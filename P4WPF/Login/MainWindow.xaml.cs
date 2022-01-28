@@ -70,7 +70,6 @@ namespace Login
             try
             {
 
-
                 for (int i = 0; i < users.Count; i++)
                 {
                     if (users[i].name == name)
@@ -101,11 +100,10 @@ namespace Login
                         }
                         else
                         {
-                            MessageBox.Show("Password is incorrect!!");
+                            MessageBox.Show("Username and Password are incorrect!!");
                         }
 
                     }
-
                 }
             }
             catch (Exception)
