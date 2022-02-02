@@ -2,6 +2,7 @@
 @section('pagetitle','Login')
 @section('content')
 
+<div class="h-screen">
 <!--left section with pizzas-->
 <div class="container grid sm:grid-cols-4 grid-col-1 grid-row-5 gap-x-5 ">
     <div class="sm:col-span-3 w-full">
@@ -51,7 +52,7 @@
 
 
 <!--right section pizza cart-->
-<div class="hidden sm:block rounded bg-white shadow-lg p-2">
+<div class="hidden border-b sm:block rounded-lg bg-white shadow-lg p-2">
     <div class="">
         <div class="p-2">
             <h1 class="text-gray-900 font-bold text-2xl"> Bestelling</h1>
@@ -84,9 +85,10 @@
             </div>
         </div>
         <div class="flex justify-end">
-            <a href="{{route('guest.create')}}" class="px-3 py-2 bg-green-300 text-white text-xs font-bold uppercase rounded">Volgende </a>
+            <a href="{{route('bestelling.create')}}" class="px-3 py-2 bg-green-300 text-white text-xs font-bold uppercase rounded">Volgende </a>
         </div>
     </div>
 </div>
+
 </div>
 @endsection

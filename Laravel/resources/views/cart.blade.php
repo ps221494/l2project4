@@ -3,9 +3,9 @@
 @section('content')
 
 <div class="container px-6 mx-auto h-screen">
-    
+
     <div class="flex justify-center my-6">
-        
+
         <div class="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
             @if ($message = Session::get('success'))
             <div class="p-4 mb-3 bg-green-400 rounded">
@@ -83,11 +83,9 @@
                 </div>
                 <div>
                     <div class="py-4">
-                        <a href="{{route('guest.create')}}" class="px-3 py-2 bg-green-300 text-white text-xs font-bold uppercase rounded">Volgende </a>
+                        <a href="{{route('bestelling.create')}}" class="px-3 py-2 bg-green-300 text-white text-xs font-bold uppercase rounded">Volgende </a>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>

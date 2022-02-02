@@ -7,6 +7,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -25,9 +26,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('bestelling',[CartController::class, 'bestelling'])->name('bestelling.detail')->middleware('auth');
-Route::post('bestelling',[CartController::class, 'addToBestelling'])->name('bestelling.store');
+Route::get('test', [CartController::class,'bestelling']);
+
+
+
+//Route::get('bestelling',[CartController::class, 'bestelling'])->name('bestelling.detail')->middleware('auth');
+//Route::post('bestelling',[CartController::class, 'addToBestelling'])->name('bestelling.store');
+//Route::post('bestelling',[CartController::class, 'destroy'])->name('bestelling.destroy');
 Route::resource('guest', GuestController::class);
+Route::resource('bestelling', OrderController::class);
 
 //route for the cart functionality
 Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
@@ -47,6 +54,7 @@ Route::group(['middleware'=>'auth'], function(){
     Route::resource('user', UserController::class);
     Route::resource('employee', EmployeeController::class);
     Route::resource('customer', CustomerController::class);
+    
     
 });
 

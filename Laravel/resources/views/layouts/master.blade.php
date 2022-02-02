@@ -6,7 +6,7 @@
 
 <body class="">
     @include('layouts/parts.header')
-    <div class="h-screen">
+    <div class="">
         @yield('content')
     </div>
     @include('layouts/parts.footer')

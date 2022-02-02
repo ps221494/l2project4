@@ -10,6 +10,7 @@ class Order extends Model
     use HasFactory;
 
     public function orderdetial(){
-        return $this->hasMany(OrderDetial::class);
+        return $this->hasMany(OrderDetial::class,'order_id');
     }
+
 }

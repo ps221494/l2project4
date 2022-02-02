@@ -7,7 +7,6 @@
         <div class="h-44 flex flex-1 sm:justify-end justify-center items-center ">
             @auth
             <a href="{{ url('/dashboard') }}" class="p-2 h-10 text-lg text-gray-700 dark:text-gray-500 ">Dashboard</a>
-            <a href="{{ route('bestelling.detail')}}" class="p-2 h-10 text-lg text-gray-700 dark:text-gray-500 ">Mijn Bestelling</a>
             @else
             <a href="{{ route('login') }}" class="p-2 h-10 text-lg text-gray-700 dark:text-gray-500 ">Log in</a>
 
