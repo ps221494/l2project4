@@ -30,12 +30,12 @@
                                         <option value="(35)cm NY style">(35)cm NY style</option>
                                     </select>
                                     <div class="flex item-center justify-between mt-3">
-                                        <h1 class="text-gray-700 font-bold text-xl">€</h1>
+                                        <h1 class="text-gray-700 font-bold text-xl">€ {{$pizza->amount}}</h1>
 
                                         @csrf
                                         <input type="hidden" name="id" value="{{$pizza->id}}" />
                                         <input type="hidden" name="name" value="{{$pizza->name}}" />
-                                        <input type="hidden" name="price" value="12.42" />
+                                        <input type="hidden" name="price" value="{{$pizza->amount}}" />
                                         <input type="hidden" name="quantity" value="1" />
                                         <input type="submit" class="px-3 py-2 bg-green-300 text-white text-xs font-bold uppercase rounded" value="Add to Card" />
                                 </form>

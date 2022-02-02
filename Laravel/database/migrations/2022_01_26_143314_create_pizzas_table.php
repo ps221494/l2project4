@@ -17,6 +17,7 @@ class CreatePizzasTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
+            $table->decimal('amount',5,2);
             $table->timestamps();
         });
     }

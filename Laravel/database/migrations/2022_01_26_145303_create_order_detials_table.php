@@ -18,6 +18,7 @@ class CreateOrderDetialsTable extends Migration
             $table->foreignId('order_id')->constrained();
             $table->foreignId('pizza_id')->constrained();
             $table->integer('quantity')->nullable();
+            $table->string('size');
             $table->string('status');
             $table->timestamps();
         });

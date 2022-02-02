@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Auth;
 use App\Models\bestellingen;
 
@@ -85,17 +86,18 @@ class CartController extends Controller
             }
             $order_detail->pizza_id = $item->id;
             $order_detail->quantity = $item->quantity;
+            $order_detail->size = $item->attributes->size;
             $order_detail->status = "ontvangen";
             $order_detail->save();
         }
         \Cart::clear();
-        return view('guest.track');
-
+        return redirect()->route('bestelling.detail');
     }
 
-    public function bestelling(){
-        $orders = Order::where('user_id',Auth::id());
+    public function bestelling()
+    {
+        $orders = Order::where('user_id', Auth::id());
         $detail = OrderDetial::all();
-        return view('guest.track',compact('detail'));
+        return view('guest.track', compact('detail'));
     }
 }

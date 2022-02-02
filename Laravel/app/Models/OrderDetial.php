@@ -10,7 +10,11 @@ class OrderDetial extends Model
     use HasFactory;
 
     public function pizza(){
-        return $this->hasMany(Pizza::class);
+        return $this->belongsTo(Pizza::class);
+    }
+    
+    public function orders(){
+        return $this->belongsTo(Order::class);
     }
 
     
