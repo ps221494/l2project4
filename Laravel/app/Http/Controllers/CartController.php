@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\bestellingen;
+
+use App\Models\guest;
+use App\Models\Pizza;
+use App\Models\Customer;
+use App\Models\Order;
+use App\Models\OrderDetial;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -23,6 +29,9 @@ class CartController extends Controller
             'name' => $request->name,
             'price' => $request->price,
             'quantity' => $request->quantity,
+            'attributes' => array(
+                'size' => $request->size,
+            ),
         ]);
         session()->flash('success', 'Product is Added to Cart Successfully !');
 
@@ -64,10 +73,28 @@ class CartController extends Controller
     }
 
 
-    public function Bestelling(Request $request)
+    public function addToBestelling(Request $request)
     {
-        $cartItems = \Cart::getContent();
-        return view('guest.bestelling', compact('cartItems'));
+        $products = \Cart::getContent();
+        $oders = Order::all();
 
+        foreach ($products as $item) {
+            $order_detail = new OrderDetial();
+            foreach ($oders as $oid) {
+                $order_detail->order_id = $oid->id;
+            }
+            $order_detail->pizza_id = $item->id;
+            $order_detail->quantity = $item->quantity;
+            $order_detail->save();
+        }
+        \Cart::clear();
+        return view('guest.track');
+
+    }
+
+    public function bestelling(){
+        $orders = Order::where('user_id',Auth::id());
+        $detail = OrderDetial::all();
+        return view('guest.track',compact('detail'));
     }
 }
