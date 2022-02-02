@@ -25,8 +25,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/bestelling',[CartController::class, 'Bestelling'])->name('Bestelling');
+Route::get('bestelling',[CartController::class, 'bestelling'])->name('bestelling.detail')->middleware('auth');
+Route::post('bestelling',[CartController::class, 'addToBestelling'])->name('bestelling.store');
 Route::resource('guest', GuestController::class);
+
+//route for the cart functionality
 Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
 Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
 Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
