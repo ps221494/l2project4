@@ -85,6 +85,7 @@ class CartController extends Controller
             }
             $order_detail->pizza_id = $item->id;
             $order_detail->quantity = $item->quantity;
+            $order_detail->status = "ontvangen";
             $order_detail->save();
         }
         \Cart::clear();
