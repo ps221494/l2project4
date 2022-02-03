@@ -8,19 +8,14 @@ namespace Login.Models
 {
    public class Users : Role
     {
-        private ulong _id;
         private string _name;
         private string _email;
         private string _password;
 
 
-        public ulong id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
+        
 
-        public string name
+        public string Name
         {
             get { return _name; }
             set { _name = value; }
