@@ -26,7 +26,7 @@ namespace Login
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         // Create the OnPropertyChanged method to raise the event
-        // The calling member's name will be used as the parameter.
+        // The calling member's Name will be used as the parameter.
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
@@ -153,6 +153,14 @@ namespace Login
                 }
             }
             RepopulateOrders();
+        }
+
+        private void Logout(object sender, RoutedEventArgs e)
+        {
+            MainWindow loginscreen = new MainWindow();
+
+            loginscreen.Show();
+            this.Close();
         }
     }
 }

@@ -10,25 +10,25 @@ namespace Login.Models
     {
         private MySqlConnection _conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["stonkspizzastring"].ConnectionString);
         #region mainwindow
-        public List<Users> GetUsers()
+        public List<User_Roles> GetUsers()
         {
-            List<Users> resultaat = new List<Users>();
+            List<User_Roles> resultaat = new List<User_Roles>();
             try
             {
                 _conn.Open();
                 MySqlCommand command = _conn.CreateCommand();
                 command.CommandText =
-                    "SELECT users.id, users.name, users.password, users.email, roles.id, roles.rname FROM user_roles INNER JOIN users ON user_roles.user_id = users.id INNER JOIN roles on user_roles.role_id = roles.id";
+                    "SELECT users.id, users.Name, users.password, users.email, roles.id, roles.rname FROM user_roles INNER JOIN users ON user_roles.user_id = users.id INNER JOIN roles on user_roles.role_id = roles.id";
                 MySqlDataReader reader = command.ExecuteReader();
                 DataTable table = new DataTable();
                 table.Load(reader);
 
                 foreach (DataRow rij in table.Rows)
                 {
-                    Users users = new Users();
+                    User_Roles users = new User_Roles();
 
-                    users.id = (ulong)rij["id"];
-                    users.name = (string)rij["name"];
+                    users.ID = (ulong)rij["id"];
+                    users.Name = (string)rij["Name"];
                     users.email = (string)rij["email"];
                     users.password = (string)rij["password"];
                     users.RoleName = (string)rij["rname"];
@@ -59,16 +59,16 @@ namespace Login.Models
                 _conn.Open();
                 MySqlCommand command = _conn.CreateCommand();
                 command.CommandText =
-                    "SELECT name, email, password "
+                    "SELECT Name, email, password "
                     + "FROM users " +
-                    "WHERE name = @name";
-                command.Parameters.AddWithValue("@name", txtname);
+                    "WHERE Name = @Name";
+                command.Parameters.AddWithValue("@Name", txtname);
                 command.Parameters.AddWithValue("@password", Password);
                 MySqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    if ((string)reader["name"] == txtname)
+                    if ((string)reader["Name"] == txtname)
                     {
                         if (BCrypt.Net.BCrypt.Verify(Password, (string)reader["password"]))
                         {
@@ -101,7 +101,8 @@ namespace Login.Models
                 _conn.Open();
                 MySqlCommand command = _conn.CreateCommand();
                 command.CommandText =
-                    "SELECT id, order_id, pizza_id, quantity, status FROM order_detials";
+                    "SELECT order_details.id, order_details.order_id, order_details.pizza_id, order_details.quantity, order_details.status, users.name FROM order_detials " +
+                    "INNER JOIN users on users.name";
                 MySqlDataReader reader = command.ExecuteReader();
                 DataTable table = new DataTable();
                 table.Load(reader);
@@ -115,6 +116,7 @@ namespace Login.Models
                     order_details.Pizza_ID = (ulong)rij["pizza_id"];
                     order_details.Quantity = (int)rij["quantity"];
                     order_details.Status = (string)rij["status"];
+                    order_details.Name = (string)rij["name"];
 
                     Console.ReadLine();
                     resultaat.Add(order_details);
@@ -175,7 +177,7 @@ namespace Login.Models
         }
 
         public List<Order_details> GetAccepterOrders()
-        { // "SELECT users.id, users.name, users.password, users.email, roles.id, roles.rname FROM user_roles INNER JOIN users ON user_roles.user_id = users.id 
+        { // "SELECT users.id, users.Name, users.password, users.email, roles.id, roles.rname FROM user_roles INNER JOIN users ON user_roles.user_id = users.id 
             //INNER JOIN roles on user_roles.role_id = roles.id";
             List<Order_details> result = new List<Order_details>();
             try
@@ -183,7 +185,7 @@ namespace Login.Models
                 _conn.Open();
                 MySqlCommand command = _conn.CreateCommand();
                 command.CommandText =
-                    "SELECT order_detials.id, order_detials.order_id, order_detials.pizza_id, order_detials.quantity, order_detials.status, users.id, users.name, users.email " +
+                    "SELECT order_detials.id, order_detials.order_id, order_detials.pizza_id, order_detials.quantity, order_detials.status, users.id, users.Name, users.email " +
 "FROM order_detials " +
 "INNER JOIN orders ON order_detials.order_id = orders.id " +
 "INNER JOIN users on orders.user_id = users.id " +
@@ -202,9 +204,9 @@ namespace Login.Models
                     acceptedorder.Pizza_ID = (ulong)rij["pizza_id"];
                     acceptedorder.Quantity = (int)rij["quantity"];
                     acceptedorder.Status = (string)rij["status"];
-                    acceptedorder.name = (string)rij["name"];
+                    acceptedorder.Name = (string)rij["Name"];
                     acceptedorder.email = (string)rij["email"];
-                    acceptedorder.id = (ulong)rij["id"];
+                    acceptedorder.ID = (ulong)rij["id"];
 
                     Console.ReadLine();
                     result.Add(acceptedorder);

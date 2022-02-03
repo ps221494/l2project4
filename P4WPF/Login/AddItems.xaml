@@ -7,6 +7,40 @@
         mc:Ignorable="d"
         Title="AddItems" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock HorizontalAlignment="Center">Voornaam</TextBlock>
+            <TextBox x:Name="TXTFirstName" HorizontalAlignment="Center" ></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBlock HorizontalAlignment="Center">Achternaam</TextBlock>
+            <TextBox x:Name="TXTLastName" HorizontalAlignment="Center" ></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Column="2">
+            <TextBlock HorizontalAlignment="Center">Adress</TextBlock>
+            <TextBox x:Name="TXTAdress" HorizontalAlignment="Center" ></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Column="3">
+            <TextBlock HorizontalAlignment="Center">phone</TextBlock>
+            <TextBox x:Name="TXTPhoneNumber" HorizontalAlignment="Center" ></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <TextBlock HorizontalAlignment="Center">Zipcode</TextBlock>
+            <TextBox x:Name="TXTZipCode" HorizontalAlignment="Center" ></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <TextBlock HorizontalAlignment="Center">City</TextBlock>
+            <TextBox x:Name="TXTCity" HorizontalAlignment="Center" ></TextBox>
+        </StackPanel>
     </Grid>
 </Window>

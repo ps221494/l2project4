@@ -46,7 +46,7 @@ namespace Login
 
         private void PopulateUsers()
         {
-            List<Users> UsersfromDB = _usersdb.GetUsers();
+            List<User_Roles> UsersfromDB = _usersdb.GetUsers();
 
             if (UsersfromDB == null)
             {
@@ -64,7 +64,7 @@ namespace Login
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            List<Users> users = new List<Users>();
+            List<User_Roles> users = new List<User_Roles>();
             users = _usersdb.GetUsers();
             string name = TxtUserName.Text;
             try
@@ -73,7 +73,7 @@ namespace Login
 
                 for (int i = 0; i < users.Count; i++)
                 {
-                    if (users[i].name == name)
+                    if (users[i].Name == name)
                     {
                         adminwindow win = new adminwindow();
                         bereidingwindow winbereiding = new bereidingwindow();

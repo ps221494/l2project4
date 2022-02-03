@@ -1,21 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
+﻿using System.Data;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Login.Models;
-using System.Runtime.CompilerServices;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 
 namespace Login
 {
@@ -25,8 +10,8 @@ namespace Login
     public partial class AdminPanel : Window
     {
         ProjectDB _db = new ProjectDB();
-   
-        
+
+
         public AdminPanel()
         {
             InitializeComponent();
@@ -51,7 +36,7 @@ namespace Login
                     }
                     break;
             }
-          
+
         }
 
         private void BtnShowMW(object sender, RoutedEventArgs e)
@@ -81,6 +66,12 @@ namespace Login
 
             FillDG();
         }
+        private void Logout(object sender, RoutedEventArgs e)
+        {
+            MainWindow loginscreen = new MainWindow();
 
+            loginscreen.Show();
+            this.Close();
+        }
     }
 }

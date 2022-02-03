@@ -27,6 +27,7 @@
             <RowDefinition Height="5px"/>
 
         </Grid.RowDefinitions>
+        <Button Grid.Row="3" Grid.Column="1" Background="Red" Click="Logout">uitloggen</Button>
         <StackPanel Grid.Row="1" Grid.Column="1">
             <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">Ontvangen bestellingen</TextBlock>
             <TextBlock>klik om de bestelling te accepteren</TextBlock>
@@ -38,9 +39,21 @@
 
        
 
-        <ListView MouseDoubleClick="ListView_MouseDoubleClick" Background="#FADECAB1" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding LstOrderDetails}" SelectedItem="{Binding SelectedOrderDetails}" DisplayMemberPath="Order_ID"></ListView>
+        <ListView MouseDoubleClick="ListView_MouseDoubleClick" Background="#FADECAB1" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding LstOrderDetails}" 
+                  SelectedItem="{Binding SelectedOrderDetails}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="5" Background="Black" Width="200">
+                        <StackPanel>
+                        <TextBlock Text="{Binding Order_ID}" Foreground="White"/>
+                        <TextBlock Text="{Binding Pizza_ID}" Foreground="White"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
-        <ListView Background="#FADECAB1" Grid.Column="3" Grid.Row="2" x:Name="STPOrderDetails" ItemsSource="{Binding LstAcceptedOrders}" SelectedItem="{Binding SelectedAcceptedOrder}" DisplayMemberPath="name"></ListView>
+        <ListView Background="#FADECAB1" Grid.Column="3" Grid.Row="2" x:Name="STPOrderDetails" ItemsSource="{Binding LstAcceptedOrders}" SelectedItem="{Binding SelectedAcceptedOrder}" DisplayMemberPath="Name"></ListView>
       
         <StackPanel Background="#FADECAB1" Grid.Column="5" Grid.Row="2"></StackPanel>
     </Grid>

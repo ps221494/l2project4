@@ -23,5 +23,14 @@ namespace Login
         {
             InitializeComponent();
         }
+
+
+        private void Logout(object sender, RoutedEventArgs e)
+        {
+            MainWindow loginscreen = new MainWindow();
+
+            loginscreen.Show();
+            this.Close();
+        }
     }
 }
