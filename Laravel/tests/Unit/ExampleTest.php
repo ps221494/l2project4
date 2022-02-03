@@ -2,10 +2,15 @@
 
 namespace Tests\Unit;
 
+use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use App\Models\Pizza;
 use PHPUnit\Framework\TestCase;
 
 class ExampleTest extends TestCase
 {
+    
     /**
      * A basic test example.
      *
@@ -13,6 +18,13 @@ class ExampleTest extends TestCase
      */
     public function test_example()
     {
-        $this->assertTrue(true);
+        
+        
     }
+
+    public function setUp(): Void{
+        $pizza = Pizza::find(1);
+        $this->assertEquals(12.84,$pizza->amount,0.001,'Pizza amount not correctly!!');
+    }
+
 }

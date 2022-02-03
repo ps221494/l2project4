@@ -85,7 +85,7 @@
             </div>
         </div>
         <div class="flex justify-end">
-            <a href="{{route('bestelling.create')}}" class="px-3 py-2 bg-green-300 text-white text-xs font-bold uppercase rounded">Volgende </a>
+            <a href="{{route('cart.list')}}" class="px-3 py-2 bg-green-300 text-white text-xs font-bold uppercase rounded">Volgende </a>
         </div>
     </div>
 </div>
