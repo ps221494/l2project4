@@ -18,11 +18,13 @@ class PizzaSeeder extends Seeder
     {
         DB::table('pizzas')->insert([
             'name' => 'Hawaii',
+            'amount' => '12.84',
             'description' => 'lekker pizza met ananas, je moet er van houden',
         ]);
         
         DB::table('pizzas')->insert([
             'name' => 'Margherita',
+            'amount' => '11.44',
             'description' => 'Pizza Margherita ingrediënten tomaten, mozzarella.',
         ]);
     }

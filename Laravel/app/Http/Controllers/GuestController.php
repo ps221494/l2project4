@@ -32,21 +32,6 @@ class GuestController extends Controller
     {
         //check if there is any pizza in cart 
         //if there is nothing you get error message back.
-        if (Auth::check()) {
-            $pizzaCount = \Cart::getContent()->count();
-            if ($pizzaCount > 0) {
-                $cartItems = \Cart::getContent();
-                $customer = Customer::find(Auth::id());
-                $order = new Order();
-                $order->user_id = Auth::id();
-                $order->save();
-                return view('guest.bestelling', compact('cartItems', 'customer'));
-            } else {
-                return redirect()->back()->with('error', 'Je moet een pizza kiezen als je wilt bestellen!');
-            }
-        } else {
-            return redirect('/login');
-        }
     }
 
     /**

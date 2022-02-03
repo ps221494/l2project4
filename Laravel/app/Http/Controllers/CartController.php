@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Auth;
 use App\Models\bestellingen;
-
+Use Cart;
 use App\Models\guest;
 use App\Models\Pizza;
 use App\Models\Customer;
@@ -25,12 +26,13 @@ class CartController extends Controller
     public function addToCart(Request $request)
     {
         \Cart::add([
-            'id' => $request->id,
+            'id' => uniqid(),
             'name' => $request->name,
             'price' => $request->price,
             'quantity' => $request->quantity,
             'attributes' => array(
                 'size' => $request->size,
+                'id' => $request->id,
             ),
         ]);
         session()->flash('success', 'Product is Added to Cart Successfully !');
@@ -83,19 +85,20 @@ class CartController extends Controller
             foreach ($oders as $oid) {
                 $order_detail->order_id = $oid->id;
             }
-            $order_detail->pizza_id = $item->id;
+            $order_detail->pizza_id = $item->attributes->id;
             $order_detail->quantity = $item->quantity;
+            $order_detail->size = $item->attributes->size;
             $order_detail->status = "ontvangen";
             $order_detail->save();
         }
         \Cart::clear();
-        return view('guest.track');
-
+        return redirect()->route('bestelling.detail');
     }
 
-    public function bestelling(){
-        $orders = Order::where('user_id',Auth::id());
-        $detail = OrderDetial::all();
-        return view('guest.track',compact('detail'));
+    public function bestelling()
+    {
+        $orders = Order::where('user_id', Auth::id())->get();
+        return view('guest.track', compact('orders'));
     }
+
 }
