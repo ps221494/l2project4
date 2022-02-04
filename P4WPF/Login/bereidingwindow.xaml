@@ -71,7 +71,7 @@
       
         <StackPanel Background="#FADECAB1" Grid.Column="5" Grid.Row="2"></StackPanel>
 
-        <ListView Background="#FADECAB1" Grid.Column="7" Grid.Row="2" x:Name="LVInOven" ItemsSource="{Binding LstInOvenOrders}" SelectedItem="{Binding SelectedAcceptedOrder}">
+        <ListView MouseDoubleClick="DoubleClickToDelivery" Background="#FADECAB1" Grid.Column="7" Grid.Row="2" x:Name="LVInOven" ItemsSource="{Binding LstInOvenOrders}" SelectedItem="{Binding SelectedInOverOrder}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="5" Background="Black" Width="200">

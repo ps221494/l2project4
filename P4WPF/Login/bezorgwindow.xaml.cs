@@ -11,6 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Login.Models;
+using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace Login
 {
@@ -19,11 +23,52 @@ namespace Login
     /// </summary>
     public partial class bezorgwindow : Window
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        // Create the OnPropertyChanged method to raise the event
+        // The calling member's Name will be used as the parameter.
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        private ProjectDB _db = new ProjectDB();
+
+        private pizzas _SelectedToDelivery;
+        public pizzas SelectedToDelivery
+        {
+            get { return _SelectedToDelivery; }
+            set { _SelectedToDelivery = value; OnPropertyChanged(); }
+        }
+        private ObservableCollection<pizzas> _LstToDelivery = new ObservableCollection<pizzas>();
+
+        public ObservableCollection<pizzas> LstToDelivery
+        {
+            get { return _LstToDelivery; }
+            set { _LstToDelivery = value; OnPropertyChanged(); }
+        }
         public bezorgwindow()
         {
             InitializeComponent();
+            PopulateToDeliver();
+            DataContext = this;
         }
 
+        private void PopulateToDeliver()
+        {
+            List<pizzas> OrderdetailsFromDb = _db.GetDeliveryOrders();
+
+            if (OrderdetailsFromDb == null)
+            {
+                MessageBox.Show("error inladen orders");
+            }
+            else
+            {
+                LstToDelivery.Clear();
+                foreach (pizzas DeliveryDetails in OrderdetailsFromDb)
+                {
+                    LstToDelivery.Add(DeliveryDetails);
+                }
+            }
+        }
 
         private void Logout(object sender, RoutedEventArgs e)
         {
@@ -31,6 +76,11 @@ namespace Login
 
             loginscreen.Show();
             this.Close();
+        }
+
+        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

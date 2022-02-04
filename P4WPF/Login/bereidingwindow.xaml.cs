@@ -105,6 +105,10 @@ namespace Login
             get { return _LstInOvenOrders; }
             set { _LstInOvenOrders = value; OnPropertyChanged(); }
         }
+
+
+
+      
         #endregion
 
 
@@ -168,7 +172,7 @@ namespace Login
             }
             else
             {
-                LstAcceptedOrders.Clear();
+                LstInOvenOrders.Clear();
                 foreach (pizzas acceptedorders in AccepterOrders)
                 {
                     LstInOvenOrders.Add(acceptedorders);
@@ -210,16 +214,38 @@ namespace Login
                 Status = SelectedAcceptedOrder.Status,
             };
 
-            if ((MessageBox.Show("Bestelling accepteren?", "", MessageBoxButton.YesNo) == MessageBoxResult.No))
+            if ((MessageBox.Show("Bestelling in de oven doen?", "", MessageBoxButton.YesNo) == MessageBoxResult.No))
             {
-                if ((MessageBox.Show("bestelling niet geaccepteerd" + " wilt u de bestelling annuleren?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes))
-                {
-
-                }
+                MessageBox.Show("bestelling niet in de oven gedaan");
             }
             else
             {
                 if (!_db.UpdateToOvenOrderStatus(SelectedAcceptedOrder.Order_ID, changedDetails))
+                {
+                    MessageBox.Show("er is een fout bij het wijzigen");
+                }
+                else
+                {
+                    MessageBox.Show("bestelling geaccepteerd");
+                }
+            }
+            RepopulateOrders();
+        }
+
+        private void DoubleClickToDelivery(object sender, MouseButtonEventArgs e)
+        {
+            pizzas DeliveryDetails = new pizzas()
+            {
+                Status = SelectedInOverOrder.Status,
+            };
+
+            if ((MessageBox.Show("Bestelling uit de oven halen??", "", MessageBoxButton.YesNo) == MessageBoxResult.No))
+            {
+                MessageBox.Show("bestelling niet uit de oven gehaald");
+            }
+            else
+            {
+                if (!_db.UpdateToDelivery(SelectedInOverOrder.Order_ID, DeliveryDetails))
                 {
                     MessageBox.Show("er is een fout bij het wijzigen");
                 }

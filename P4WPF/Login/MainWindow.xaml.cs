@@ -61,6 +61,11 @@ namespace Login
                                     winbereiding.Show();
                                     this.Close();
                                     break;
+                                case "bezorging":
+                                    winbezorgin.Show();
+                                    this.Close();
+                                    break;
+
                                 case "management":
                                 case "admin":
                                     MessageBox.Show("welkom " + name);

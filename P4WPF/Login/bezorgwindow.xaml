@@ -7,6 +7,41 @@
         mc:Ignorable="d"
         Title="bezorgwindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5px"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="5px"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="5px"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="5px"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="5px"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5px"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+
+            <RowDefinition Height="5px"/>
+
+        </Grid.RowDefinitions>
+        <Button Grid.Row="3" Grid.Column="1" Background="Red" Click="Logout">uitloggen</Button>
+
+        <ListView MouseDoubleClick="ListView_MouseDoubleClick" Background="#FADECAB1" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding LstToDelivery}" 
+                  SelectedItem="{Binding SelectedToDelivery}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="5" Background="Black" Width="200">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Order_ID}" Foreground="White"/>
+                            <TextBlock Text="{Binding Name}" Foreground="White"/>
+                            <TextBlock Text="{Binding Pname}" Foreground="White"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>
