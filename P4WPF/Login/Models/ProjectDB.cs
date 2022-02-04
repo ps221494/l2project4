@@ -111,7 +111,7 @@ namespace Login.Models
                 {
                     Order_details order_details = new Order_details();
 
-                    order_details.ID = (ulong)rij["id"];
+                    order_details.OrderDetailid = (ulong)rij["id"];
                     order_details.Order_ID = (ulong)rij["order_id"];
                     order_details.Pizza_ID = (ulong)rij["pizza_id"];
                     order_details.Quantity = (int)rij["quantity"];
@@ -153,7 +153,7 @@ namespace Login.Models
                 {
                     Order_details order_details = new Order_details();
 
-                    order_details.ID = (ulong)rij["id"];
+                    order_details.OrderDetailid = (ulong)rij["id"];
                     order_details.Order_ID = (ulong)rij["order_id"];
                     order_details.Pizza_ID = (ulong)rij["pizza_id"];
                     order_details.Quantity = (int)rij["quantity"];
@@ -199,14 +199,14 @@ namespace Login.Models
                 {
                     Order_details acceptedorder = new Order_details();
 
-                    acceptedorder.ID = (ulong)rij["id"];
+                    acceptedorder.OrderDetailid = (ulong)rij["id"];
                     acceptedorder.Order_ID = (ulong)rij["order_id"];
                     acceptedorder.Pizza_ID = (ulong)rij["pizza_id"];
                     acceptedorder.Quantity = (int)rij["quantity"];
                     acceptedorder.Status = (string)rij["status"];
                     acceptedorder.Name = (string)rij["Name"];
                     acceptedorder.email = (string)rij["email"];
-                    acceptedorder.ID = (ulong)rij["id"];
+                    acceptedorder.OrderDetailid = (ulong)rij["id"];
 
                     Console.ReadLine();
                     result.Add(acceptedorder);
@@ -328,6 +328,42 @@ namespace Login.Models
             }
             return Pizzas;
         }
+
+
+        //dit is om pizza toetevoegen en op te halen.
+        public List<Ingredient> GetAllIngredients()
+        {
+            List<Ingredient> result = new List<Ingredient>();
+            try
+            {
+                _conn.Open();
+                MySqlCommand command = _conn.CreateCommand();
+                command.CommandText = "SELECT * FROM `ingredients`";
+                MySqlDataReader reader = command.ExecuteReader();
+                DataTable table = new DataTable();
+                table.Load(reader);
+                foreach (DataRow row in table.Rows)
+                {
+                    Ingredient ingredients = new Ingredient();
+                    ingredients.Id = (ulong)row["Id"];
+                    ingredients.Name = (string)row["Name"];
+                    ingredients.Price = (decimal)row["price"];
+                    result.Add(ingredients);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                _conn.Close();
+            }
+
+            return result;
+        }
+
 
     }
 }

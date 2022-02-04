@@ -126,3 +126,6 @@ C:\School\leer jaar 2\Project4\l2project4\P4WPF\Login\obj\Debug\Login.csproj.Cor
 C:\School\leer jaar 2\Project4\l2project4\P4WPF\Login\obj\Debug\Login.csproj.CopyComplete
 C:\School\leer jaar 2\Project4\l2project4\P4WPF\Login\obj\Debug\Login.exe
 C:\School\leer jaar 2\Project4\l2project4\P4WPF\Login\obj\Debug\Login.pdb
+C:\School\leer jaar 2\Project4\l2project4\P4WPF\Login\obj\Debug\NewPizzaWin.g.cs
+C:\School\leer jaar 2\Project4\l2project4\P4WPF\Login\obj\Debug\App.baml
+C:\School\leer jaar 2\Project4\l2project4\P4WPF\Login\obj\Debug\NewPizzaWin.baml

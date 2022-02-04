@@ -8,13 +8,6 @@ namespace Login.Models
 {
     public class Role
     {
-        private ulong id;
-
-        public ulong ID
-        {
-            get { return id; }
-            set { id = value; }
-        }
 
         private string roleName;
 

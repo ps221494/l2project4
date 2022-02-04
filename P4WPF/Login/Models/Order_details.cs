@@ -23,11 +23,11 @@ namespace Login.Models
         }
         #endregion
 
-        private ulong id;
-        public ulong ID
+        private ulong _orderDetailid;
+        public ulong OrderDetailid
         {
-            get { return id; }
-            set { id = value; OnPropertyChanged(); }
+            get { return _orderDetailid; }
+            set { _orderDetailid = value; OnPropertyChanged(); }
         }
         private ulong order_id;
 
