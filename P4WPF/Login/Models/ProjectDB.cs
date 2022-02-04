@@ -235,6 +235,58 @@ namespace Login.Models
             return result;
         }
 
+        public List<pizzas> GetInOvenOrders()
+        { // "SELECT users.id, users.Name, users.password, users.email, roles.id, roles.rname FROM user_roles INNER JOIN users ON user_roles.user_id = users.id 
+            //INNER JOIN roles on user_roles.role_id = roles.id";
+            List<pizzas> result = new List<pizzas>();
+            try
+            {
+                _conn.Open();
+                MySqlCommand command = _conn.CreateCommand();
+                command.CommandText =
+                    "SELECT order_detials.id, order_detials.order_id, order_detials.pizza_id, order_detials.quantity, order_detials.status," +
+                    " users.id, users.Name, users.email, pizzas.pname " +
+"FROM order_detials " +
+"INNER JOIN orders ON order_detials.order_id = orders.id " +
+"INNER JOIN users on orders.user_id = users.id " +
+"INNER JOIN pizzas on order_detials.pizza_id = pizzas.id " +
+"WHERE status = @status";
+                command.Parameters.AddWithValue("@status", "in de oven");
+                MySqlDataReader reader = command.ExecuteReader();
+                DataTable table = new DataTable();
+                table.Load(reader);
+
+                foreach (DataRow rij in table.Rows)
+                {
+                    pizzas acceptedorder = new pizzas();
+
+                    acceptedorder.OrderDetailid = (ulong)rij["id"];
+                    acceptedorder.Order_ID = (ulong)rij["order_id"];
+                    acceptedorder.Pizza_ID = (ulong)rij["pizza_id"];
+                    acceptedorder.Quantity = (int)rij["quantity"];
+                    acceptedorder.Status = (string)rij["status"];
+                    acceptedorder.Name = (string)rij["Name"];
+                    acceptedorder.Pname = (string)rij["pname"];
+                    acceptedorder.email = (string)rij["email"];
+                    acceptedorder.OrderDetailid = (ulong)rij["id"];
+
+                    Console.ReadLine();
+                    result.Add(acceptedorder);
+                }
+            }
+            catch (Exception e)
+            {
+
+                Console.Error.WriteLine(e.Message);
+            }
+            finally
+            {
+                _conn.Close();
+
+            }
+            return result;
+        }
+
         public bool UpdateOrderStatus(ulong order_id, pizzas order_details)
         {
             bool result = false;
@@ -266,7 +318,7 @@ namespace Login.Models
 
         public bool UpdateToOvenOrderStatus(ulong order_id, pizzas order_details)
         {
-            bool result = false;
+            bool ovenresult = false;
             try
             {
                 _conn.Open();
@@ -275,7 +327,7 @@ namespace Login.Models
                     " SET status = @status WHERE order_id = @order_id";
                 command.Parameters.AddWithValue("@order_id", order_id);
                 command.Parameters.AddWithValue("@status", "in de oven");
-                result = command.ExecuteNonQuery() >= 1;
+                ovenresult = command.ExecuteNonQuery() >= 1;
             }
             catch (Exception e)
             {
@@ -290,7 +342,7 @@ namespace Login.Models
                 }
             }
 
-            return result;
+            return ovenresult;
         }
 
         public DataTable SelectMedewerkers()

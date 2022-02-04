@@ -91,6 +91,20 @@ namespace Login
             get { return _LstAcceptedorders; }
             set { _LstAcceptedorders = value; OnPropertyChanged(); }
         }
+
+        private pizzas _InOvenSelected;
+        public pizzas SelectedInOverOrder
+        {
+            get { return _InOvenSelected; }
+            set { _InOvenSelected = value; OnPropertyChanged(); }
+        }
+        private ObservableCollection<pizzas> _LstInOvenOrders = new ObservableCollection<pizzas>();
+
+        public ObservableCollection<pizzas> LstInOvenOrders
+        {
+            get { return _LstInOvenOrders; }
+            set { _LstInOvenOrders = value; OnPropertyChanged(); }
+        }
         #endregion
 
 
@@ -105,6 +119,7 @@ namespace Login
         {
             PopulateOrders();
             PopulateAcceptedOrders();
+            PopulateOvenOrders();
         }
 
         private void PopulateOrders()
@@ -143,6 +158,24 @@ namespace Login
             }
         }
 
+        private void PopulateOvenOrders()
+        {
+            List<pizzas> AccepterOrders = _db.GetInOvenOrders();
+
+            if (AccepterOrders == null)
+            {
+                MessageBox.Show("error inladen orders");
+            }
+            else
+            {
+                LstAcceptedOrders.Clear();
+                foreach (pizzas acceptedorders in AccepterOrders)
+                {
+                    LstInOvenOrders.Add(acceptedorders);
+                }
+            }
+        }
+
         private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             pizzas changedDetails = new pizzas()
@@ -160,6 +193,33 @@ namespace Login
             else
             {
                 if (!_db.UpdateOrderStatus(SelectedPizzaOrders.Order_ID, changedDetails))
+                {
+                    MessageBox.Show("er is een fout bij het wijzigen");
+                }
+                else
+                {
+                    MessageBox.Show("bestelling geaccepteerd");
+                }
+            }
+            RepopulateOrders();
+        }
+        private void ToOven_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            pizzas changedDetails = new pizzas()
+            {
+                Status = SelectedAcceptedOrder.Status,
+            };
+
+            if ((MessageBox.Show("Bestelling accepteren?", "", MessageBoxButton.YesNo) == MessageBoxResult.No))
+            {
+                if ((MessageBox.Show("bestelling niet geaccepteerd" + " wilt u de bestelling annuleren?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes))
+                {
+
+                }
+            }
+            else
+            {
+                if (!_db.UpdateToOvenOrderStatus(SelectedAcceptedOrder.Order_ID, changedDetails))
                 {
                     MessageBox.Show("er is een fout bij het wijzigen");
                 }
