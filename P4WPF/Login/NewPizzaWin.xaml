@@ -31,7 +31,7 @@
                 <Label Content="Description" FontSize="25"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <ListView Height="150" Width="350" ItemsSource="{Binding Users}" DisplayMemberPath="Name"/>
+                <ListView Height="150" Width="350" DataContext="{Binding Users}" DisplayMemberPath="Name"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Ingredienten" FontSize="25" Width="163"/>

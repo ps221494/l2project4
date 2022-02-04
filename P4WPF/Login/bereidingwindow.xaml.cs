@@ -21,7 +21,7 @@ namespace Login
     /// <summary>
     /// Interaction logic for bereidingwindow.xaml
     /// </summary>
-    public partial class bereidingwindow : Window , INotifyPropertyChanged
+    public partial class bereidingwindow : Window, INotifyPropertyChanged
     {
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -37,23 +37,39 @@ namespace Login
         private ProjectDB _db = new ProjectDB();
         #region order details
 
-        private Order_details _selectedOrderDetail;
+        private pizzas _selectedOrderDetail;
 
-        public Order_details SelectedOrderDetails
+        public pizzas SelectedOrderDetails
         {
             get { return _selectedOrderDetail; }
             set { _selectedOrderDetail = value; OnPropertyChanged(); }
         }
 
 
-       
 
-        private ObservableCollection<Order_details> _LstOrderDetails = new ObservableCollection<Order_details>();
 
-        public ObservableCollection<Order_details> LstOrderDetails
+        private ObservableCollection<pizzas> _LstOrderDetails = new ObservableCollection<pizzas>();
+
+        public ObservableCollection<pizzas> LstOrderDetails
         {
             get { return _LstOrderDetails; }
             set { _LstOrderDetails = value; OnPropertyChanged(); }
+        }
+
+
+        private pizzas _Selectedpizzaorder;
+
+        public pizzas SelectedPizzaOrders
+        {
+            get { return _Selectedpizzaorder; }
+            set { _Selectedpizzaorder = value; OnPropertyChanged(); }
+        }
+        private ObservableCollection<pizzas> _LSTorderPIZA = new ObservableCollection<pizzas>();
+
+        public ObservableCollection<pizzas> LSTORDERPIZZA
+        {
+            get { return _LSTorderPIZA; }
+            set { _LSTorderPIZA = value; OnPropertyChanged(); }
         }
         #endregion
         #region accepted order details
@@ -66,11 +82,11 @@ namespace Login
         }
 
 
-       
 
-        private ObservableCollection<Order_details> _LstAcceptedorders = new ObservableCollection<Order_details>();
 
-        public ObservableCollection<Order_details> LstAcceptedOrders
+        private ObservableCollection<pizzas> _LstAcceptedorders = new ObservableCollection<pizzas>();
+
+        public ObservableCollection<pizzas> LstAcceptedOrders
         {
             get { return _LstAcceptedorders; }
             set { _LstAcceptedorders = value; OnPropertyChanged(); }
@@ -93,7 +109,7 @@ namespace Login
 
         private void PopulateOrders()
         {
-            List<Order_details> OrderdetailsFromDb = _db.GetRecievedOrder_Details();
+            List<pizzas> OrderdetailsFromDb = _db.GetRecievedOrder_Details();
 
             if (OrderdetailsFromDb == null)
             {
@@ -101,17 +117,17 @@ namespace Login
             }
             else
             {
-                LstOrderDetails.Clear();
-                foreach (Order_details order_Details in OrderdetailsFromDb)
+                LSTORDERPIZZA.Clear();
+                foreach (pizzas order_Details in OrderdetailsFromDb)
                 {
-                    LstOrderDetails.Add(order_Details);
+                    LSTORDERPIZZA.Add(order_Details);
                 }
             }
         }
 
         private void PopulateAcceptedOrders()
         {
-            List<Order_details> AccepterOrders = _db.GetAccepterOrders();
+            List<pizzas> AccepterOrders = _db.GetAccepterOrders();
 
             if (AccepterOrders == null)
             {
@@ -120,7 +136,7 @@ namespace Login
             else
             {
                 LstAcceptedOrders.Clear();
-                foreach (Order_details acceptedorders in AccepterOrders)
+                foreach (pizzas acceptedorders in AccepterOrders)
                 {
                     LstAcceptedOrders.Add(acceptedorders);
                 }
@@ -129,21 +145,21 @@ namespace Login
 
         private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Order_details changedDetails = new Order_details()
+            pizzas changedDetails = new pizzas()
             {
-                Status = SelectedOrderDetails.Status,
+                Status = SelectedPizzaOrders.Status,
             };
 
             if ((MessageBox.Show("Bestelling accepteren?", "", MessageBoxButton.YesNo) == MessageBoxResult.No))
             {
-                if ((MessageBox.Show("bestelling niet geaccepteerd" + "Wilt u de bestelling annuleren?","", MessageBoxButton.YesNo) == MessageBoxResult.Yes))
+                if ((MessageBox.Show("bestelling niet geaccepteerd" + " wilt u de bestelling annuleren?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes))
                 {
-                    
-                }  
+
+                }
             }
             else
             {
-                if (!_db.UpdateOrderStatus(SelectedOrderDetails.Order_ID, changedDetails))
+                if (!_db.UpdateOrderStatus(SelectedPizzaOrders.Order_ID, changedDetails))
                 {
                     MessageBox.Show("er is een fout bij het wijzigen");
                 }

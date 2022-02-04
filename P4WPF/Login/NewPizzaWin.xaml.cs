@@ -40,10 +40,10 @@ namespace Login
 
         public NewPizzaWin()
         {
-            DataContext = this;
+          
             InitializeComponent();
             PopulateIngredient();
-
+            DataContext = this;
         }
 
         public void PopulateIngredient()

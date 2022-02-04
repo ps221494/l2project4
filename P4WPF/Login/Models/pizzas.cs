@@ -1,21 +1,21 @@
 ﻿namespace Login.Models
 {
-    public class pizzas
+    public class pizzas : Order_details
     {
-        private ulong id;
+      /*  private ulong id;
 
         public ulong Id
         {
             get { return id; }
             set { id = value; }
-        }
+        }*/
 
-        private string name;
+        private string pname;
 
-        public string Name
+        public string Pname
         {
-            get { return name; }
-            set { name = value; }
+            get { return pname; }
+            set { pname = value; }
         }
 
         private string description;

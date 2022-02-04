@@ -93,9 +93,9 @@ namespace Login.Models
             return islogged;
         }
         #endregion
-        public List<Order_details> GetOrder_Details()
+        public List<pizzas> GetOrder_Details()
         {
-            List<Order_details> resultaat = new List<Order_details>();
+            List<pizzas> resultaat = new List<pizzas>();
             try
             {
                 _conn.Open();
@@ -109,7 +109,7 @@ namespace Login.Models
 
                 foreach (DataRow rij in table.Rows)
                 {
-                    Order_details order_details = new Order_details();
+                    pizzas order_details = new pizzas();
 
                     order_details.OrderDetailid = (ulong)rij["id"];
                     order_details.Order_ID = (ulong)rij["order_id"];
@@ -135,15 +135,20 @@ namespace Login.Models
             return resultaat;
         }
 
-        public List<Order_details> GetRecievedOrder_Details()
+        public List<pizzas> GetRecievedOrder_Details()
         {
-            List<Order_details> resultaat = new List<Order_details>();
+            List<pizzas> resultaat = new List<pizzas>();
             try
             {
                 _conn.Open();
                 MySqlCommand command = _conn.CreateCommand();
                 command.CommandText =
-                    "SELECT id, order_id, pizza_id, quantity, status FROM order_detials WHERE status = @status";
+                     "SELECT order_detials.id, order_detials.order_id, order_detials.pizza_id, order_detials.quantity, order_detials.status, orders.user_id," +
+                     " users.name, pizzas.pname " +
+                     "FROM order_detials " +
+                     "INNER JOIN orders ON order_detials.order_id = orders.id " +
+                     "INNER JOIN users on orders.user_id = users.id " +
+                     "INNER JOIN pizzas on order_detials.pizza_id = pizzas.id";
                 command.Parameters.AddWithValue("@status", "ontvangen");
                 MySqlDataReader reader = command.ExecuteReader();
                 DataTable table = new DataTable();
@@ -151,13 +156,15 @@ namespace Login.Models
 
                 foreach (DataRow rij in table.Rows)
                 {
-                    Order_details order_details = new Order_details();
+                    pizzas order_details = new pizzas();
 
                     order_details.OrderDetailid = (ulong)rij["id"];
                     order_details.Order_ID = (ulong)rij["order_id"];
                     order_details.Pizza_ID = (ulong)rij["pizza_id"];
                     order_details.Quantity = (int)rij["quantity"];
                     order_details.Status = (string)rij["status"];
+                    order_details.Name = (string)rij["name"];
+                    order_details.Pname = (string)rij["pname"];
 
                     Console.ReadLine();
                     resultaat.Add(order_details);
@@ -176,19 +183,21 @@ namespace Login.Models
             return resultaat;
         }
 
-        public List<Order_details> GetAccepterOrders()
+        public List<pizzas> GetAccepterOrders()
         { // "SELECT users.id, users.Name, users.password, users.email, roles.id, roles.rname FROM user_roles INNER JOIN users ON user_roles.user_id = users.id 
             //INNER JOIN roles on user_roles.role_id = roles.id";
-            List<Order_details> result = new List<Order_details>();
+            List<pizzas> result = new List<pizzas>();
             try
             {
                 _conn.Open();
                 MySqlCommand command = _conn.CreateCommand();
                 command.CommandText =
-                    "SELECT order_detials.id, order_detials.order_id, order_detials.pizza_id, order_detials.quantity, order_detials.status, users.id, users.Name, users.email " +
+                    "SELECT order_detials.id, order_detials.order_id, order_detials.pizza_id, order_detials.quantity, order_detials.status," +
+                    " users.id, users.Name, users.email, pizzas.pname " +
 "FROM order_detials " +
 "INNER JOIN orders ON order_detials.order_id = orders.id " +
 "INNER JOIN users on orders.user_id = users.id " +
+"INNER JOIN pizzas on order_detials.pizza_id = pizzas.id " +
 "WHERE status = @status";
                 command.Parameters.AddWithValue("@status", "bereiden");
                 MySqlDataReader reader = command.ExecuteReader();
@@ -197,7 +206,7 @@ namespace Login.Models
 
                 foreach (DataRow rij in table.Rows)
                 {
-                    Order_details acceptedorder = new Order_details();
+                    pizzas acceptedorder = new pizzas();
 
                     acceptedorder.OrderDetailid = (ulong)rij["id"];
                     acceptedorder.Order_ID = (ulong)rij["order_id"];
@@ -205,6 +214,7 @@ namespace Login.Models
                     acceptedorder.Quantity = (int)rij["quantity"];
                     acceptedorder.Status = (string)rij["status"];
                     acceptedorder.Name = (string)rij["Name"];
+                    acceptedorder.Pname = (string)rij["pname"];
                     acceptedorder.email = (string)rij["email"];
                     acceptedorder.OrderDetailid = (ulong)rij["id"];
 
@@ -225,7 +235,7 @@ namespace Login.Models
             return result;
         }
 
-        public bool UpdateOrderStatus(ulong order_id, Order_details order_details)
+        public bool UpdateOrderStatus(ulong order_id, pizzas order_details)
         {
             bool result = false;
             try
@@ -254,7 +264,7 @@ namespace Login.Models
             return result;
         }
 
-        public bool UpdateToOvenOrderStatus(ulong order_id, Order_details order_details)
+        public bool UpdateToOvenOrderStatus(ulong order_id, pizzas order_details)
         {
             bool result = false;
             try
@@ -345,8 +355,8 @@ namespace Login.Models
                 foreach (DataRow row in table.Rows)
                 {
                     Ingredient ingredients = new Ingredient();
-                    ingredients.Id = (ulong)row["Id"];
-                    ingredients.Name = (string)row["Name"];
+                    ingredients.Id = (ulong)row["id"];
+                    ingredients.Name = (string)row["name"];
                     ingredients.Price = (decimal)row["price"];
                     result.Add(ingredients);
                 }

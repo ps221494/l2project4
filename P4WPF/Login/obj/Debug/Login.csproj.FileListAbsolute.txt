@@ -129,3 +129,6 @@ C:\School\leer jaar 2\Project4\l2project4\P4WPF\Login\obj\Debug\Login.pdb
 C:\School\leer jaar 2\Project4\l2project4\P4WPF\Login\obj\Debug\NewPizzaWin.g.cs
 C:\School\leer jaar 2\Project4\l2project4\P4WPF\Login\obj\Debug\App.baml
 C:\School\leer jaar 2\Project4\l2project4\P4WPF\Login\obj\Debug\NewPizzaWin.baml
+C:\school\leerjaar 2\project4\P4WPF\Login\obj\Debug\NewPizzaWin.g.cs
+C:\school\leerjaar 2\project4\P4WPF\Login\obj\Debug\App.baml
+C:\school\leerjaar 2\project4\P4WPF\Login\obj\Debug\NewPizzaWin.baml

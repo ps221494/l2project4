@@ -37,24 +37,53 @@
         <TextBlock Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center">Geaccepteerde bestellingen</TextBlock>
         <TextBlock Grid.Row="1" Grid.Column="7" HorizontalAlignment="Center">In de oven</TextBlock>
 
-       
 
-        <ListView MouseDoubleClick="ListView_MouseDoubleClick" Background="#FADECAB1" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding LstOrderDetails}" 
-                  SelectedItem="{Binding SelectedOrderDetails}">
+
+        <ListView MouseDoubleClick="ListView_MouseDoubleClick" Background="#FADECAB1" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding LSTORDERPIZZA}" 
+                  SelectedItem="{Binding SelectedPizzaOrders}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="5" Background="Black" Width="200">
                         <StackPanel>
-                        <TextBlock Text="{Binding Order_ID}" Foreground="White"/>
-                        <TextBlock Text="{Binding Pizza_ID}" Foreground="White"/>
+                            <TextBlock Text="{Binding Order_ID}" Foreground="White"/>
+                            <TextBlock Text="{Binding Name}" Foreground="White"/>
+                            <TextBlock Text="{Binding Pname}" Foreground="White"></TextBlock>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <ListView Background="#FADECAB1" Grid.Column="3" Grid.Row="2" x:Name="STPOrderDetails" ItemsSource="{Binding LstAcceptedOrders}" SelectedItem="{Binding SelectedAcceptedOrder}" DisplayMemberPath="Name"></ListView>
+        <ListView Background="#FADECAB1" Grid.Column="3" Grid.Row="2" x:Name="STPOrderDetails" ItemsSource="{Binding LstAcceptedOrders}" SelectedItem="{Binding SelectedAcceptedOrder}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="5" Background="Black" Width="200">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Order_ID}" Foreground="White"/>
+                            <TextBlock Text="{Binding Name}" Foreground="White"/>
+                            <TextBlock Text="{Binding Pname}" Foreground="White"></TextBlock>
+                            <TextBlock Text="{Binding Quantity}" Foreground="White"> stuks</TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
       
         <StackPanel Background="#FADECAB1" Grid.Column="5" Grid.Row="2"></StackPanel>
+
+        <ListView Background="#FADECAB1" Grid.Column="7" Grid.Row="2" x:Name="LVInOven" ItemsSource="{Binding LstAcceptedOrders}" SelectedItem="{Binding SelectedAcceptedOrder}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="5" Background="Black" Width="200">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Order_ID}" Foreground="White"/>
+                            <TextBlock Text="{Binding Name}" Foreground="White"/>
+                            <TextBlock Text="{Binding Pname}" Foreground="White"></TextBlock>
+                            <TextBlock Text="{Binding Quantity}" Foreground="White"> stuks</TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>
