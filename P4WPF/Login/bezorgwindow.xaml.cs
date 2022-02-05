@@ -80,7 +80,27 @@ namespace Login
 
         private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            pizzas changedDetails = new pizzas()
+            {
+                Status = SelectedToDelivery.Status,
+            };
 
+            if ((MessageBox.Show("Bestelling bezorgd?", "", MessageBoxButton.YesNo) == MessageBoxResult.No))
+            {
+                MessageBox.Show("Order must be deliverd before removing it");
+            }
+            else
+            {
+                if (!_db.OrderDeliverd(SelectedToDelivery.Order_ID, changedDetails))
+                {
+                    MessageBox.Show("er is een fout bij het wijzigen");
+                }
+                else
+                {
+                    MessageBox.Show("order deliverd");
+                }
+            }
+            PopulateToDeliver();
         }
     }
 }

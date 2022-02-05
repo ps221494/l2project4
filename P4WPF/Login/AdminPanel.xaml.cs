@@ -56,6 +56,11 @@ namespace Login
             NewPizzaWin pizzawin = new NewPizzaWin();
             pizzawin.Show();
         }
+        private void AddItem(object sender, RoutedEventArgs e)
+        {
+            AddItems itemwin = new AddItems();
+            itemwin.Show();
+        }
         public void BtnVerwijder_click(object sender, RoutedEventArgs e)
         {
 

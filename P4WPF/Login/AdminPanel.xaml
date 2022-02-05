@@ -37,7 +37,7 @@
         <Button Grid.Column="1" Grid.Row="1" Background="Orange" FontStyle="Italic" Click="BtnShowMW">Bekijk medewerkers</Button>
         <Button Grid.Column="1" Grid.Row="3" Background="Orange" FontStyle="Italic" Click="BtnShowPizza">Bekijk Pizzas</Button>
 
-        <Button Grid.Column="1" Grid.Row="9" Background="Green" FontStyle="Italic" Click="AddPizza">Medewerker aanmaken</Button>
+        <Button Grid.Column="1" Grid.Row="9" Background="Green" FontStyle="Italic" Click="AddItem">Medewerker aanmaken</Button>
         <Button Grid.Column="3" Grid.Row="9" Background="Green" FontStyle="Italic" Click="AddPizza">Pizza aanmaken</Button>
         <Button Grid.Column="9" Grid.Row="9" Background="Red" Click="Logout">Log uit</Button>
 

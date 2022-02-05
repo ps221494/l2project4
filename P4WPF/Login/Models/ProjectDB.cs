@@ -1,8 +1,8 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Configuration;     // Click de System.Configuration aan in References
 using System.Data;
-using MySql.Data.MySqlClient;
 
 namespace Login.Models
 {
@@ -320,7 +320,7 @@ namespace Login.Models
                     acceptedorder.Name = (string)rij["Name"];
                     acceptedorder.Pname = (string)rij["pname"];
                     acceptedorder.email = (string)rij["email"];
-                  
+
 
                     Console.ReadLine();
                     result.Add(acceptedorder);
@@ -424,6 +424,68 @@ namespace Login.Models
             }
 
             return ovenresult;
+        }
+
+        public bool OrderDeliverd(ulong order_id, pizzas order_details)
+        {
+            bool Deliveryresult = false;
+            try
+            {
+                _conn.Open();
+                MySqlCommand command = _conn.CreateCommand();
+                command.CommandText = "DELETE FROM order_detials WHERE order_id = @order_id AND status = @status";
+                command.Parameters.AddWithValue("@order_id", order_id);
+                command.Parameters.AddWithValue("@status", "onderweg naar bezorgadress");
+                Deliveryresult = command.ExecuteNonQuery() >= 1;
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e.Message);
+                return false;
+            }
+            finally
+            {
+                if (_conn.State == ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+            }
+
+            return Deliveryresult;
+        }
+
+        public bool CreateEmployee(string FirstName, string LastName, string Address, string PhoneNumber, string Zipcode, string City, string Country, string Pemail, string Bsn)
+        {
+            bool CreateEmployeeresult = false;
+
+            try
+            {
+                _conn.Open();
+                MySqlCommand command = _conn.CreateCommand();
+                command.CommandText = "INSERT INTO employees (first_name, last_name, address, phone, zipcode, city, country, personal_email, " +
+                    "birth_date, burger_service_nummer)" +
+                    " VALUES (@first_name, @last_name, @address, @phone, @zipcode, @city, @country, @personal_email, " +
+                    "@birth_date, @burger_service_nummer)";
+                command.Parameters.AddWithValue("@first_name", FirstName);
+                command.Parameters.AddWithValue("@last_name", LastName);
+                command.Parameters.AddWithValue("@address", Address);
+                command.Parameters.AddWithValue("@phone", PhoneNumber);
+                command.Parameters.AddWithValue("@zipcode", Zipcode);
+                command.Parameters.AddWithValue("@city", City);
+                command.Parameters.AddWithValue("@country", Country);
+                command.Parameters.AddWithValue("@personal_email", Pemail);
+                command.Parameters.AddWithValue("@birth_date", DateTime.Now);
+                command.Parameters.AddWithValue("@burger_service_nummer", Bsn);
+
+                CreateEmployeeresult = command.ExecuteNonQuery() >= 0;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return CreateEmployeeresult;
         }
 
         public DataTable SelectMedewerkers()
