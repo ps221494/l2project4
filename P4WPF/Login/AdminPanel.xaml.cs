@@ -1,6 +1,22 @@
-﻿using System.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 using Login.Models;
+using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Data;
+
 
 namespace Login
 {
@@ -11,7 +27,19 @@ namespace Login
     {
         ProjectDB _db = new ProjectDB();
 
+        private Employee _selectedDelete;
+        public Employee ToDelete
+        {
+            get { return _selectedDelete; }
+            set { _selectedDelete = value;}
+        }
+        private ObservableCollection<Employee> _LstEmployee = new ObservableCollection<Employee>();
 
+        public ObservableCollection<Employee> LSTEmployee
+        {
+            get { return _LstEmployee; }
+            set { _LstEmployee = value;}
+        }
         public AdminPanel()
         {
             InitializeComponent();
@@ -36,6 +64,8 @@ namespace Login
                     }
                     break;
             }
+
+            List<Employee> employeelist = _db
 
         }
 
@@ -63,7 +93,19 @@ namespace Login
         }
         public void BtnVerwijder_click(object sender, RoutedEventArgs e)
         {
+            
+            Employee deleteit = new Employee();
+            switch (TXTtoshow.Text)
+            {
+                case "1":
+                    if (!_db.DeleteEmployee(deleteit, deleteit))
+                    {
 
+                    }
+                    break;
+                case "2":
+                    break;
+            }
             FillDG();
         }
         public void BtnWijzig_click(object sender, RoutedEventArgs e)

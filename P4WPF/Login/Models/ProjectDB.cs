@@ -134,6 +134,39 @@ namespace Login.Models
             }
             return resultaat;
         }
+        public List<Employee> GetEmployeeDetails()
+        {
+            List<Employee> resutl = new List<Employee>();
+
+            try
+            {
+                _conn.Open();
+                MySqlCommand cmd = _conn.CreateCommand();
+                cmd.CommandText = "SELECT id, first_name, last_name, address, phone, zipcode, city, country, personal_email, birth_date, burger_service_nummer FROM employees";
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(reader);
+                foreach (DataRow row in dt.Rows)
+                {
+                    Employee employeedetails = new Employee();
+
+                    employeedetails.Id = (ulong)row["id"];
+                    employeedetails.FirstName = (string)row["first_name"];
+                    employeedetails.LastName = (string)row["last_name"];
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return resutl;
+        }
+
+
+
 
         public List<pizzas> GetRecievedOrder_Details()
         {
@@ -486,6 +519,25 @@ namespace Login.Models
             }
 
             return CreateEmployeeresult;
+        }
+
+        public bool DeleteEmployee(Employee Id, Employee Bsn)
+        {
+            bool DeleteEmployeeresult = false;
+
+            try
+            {
+                _conn.Open();
+                MySqlCommand deleteCommand = _conn.CreateCommand();
+                deleteCommand.CommandText = "DELETE FROM employees WHERE";
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return DeleteEmployeeresult;
         }
 
         public DataTable SelectMedewerkers()

@@ -126,6 +126,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Ingredient.cs" />
     <Compile Include="Models\Orders.cs" />
     <Compile Include="Models\Order_details.cs" />
