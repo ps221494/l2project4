@@ -32,8 +32,17 @@ namespace Login
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //this is gonna be tricky to do without any old projects open haha
+            string Firstname = TXTFirstName.Text;
+            string Lastname = TXTLastName.Text;
+            string Adress = TXTAdress.Text;
+            string PhoneNumber = TXTPhoneNumber.Text;
+            string Zipcode = TXTZipCode.Text;
+            string City = TXTCity.Text;
+            string Country = TXTCountry.Text;
+            string PersonalEmail = TXTPersonal.Text;
+            string BSN = TXTBsn.Text;
 
-            if (!_db.CreateEmployee(Convert.ToString(TXTFirstName), Convert.ToString(TXTLastName), Convert.ToString(TXTAdress), Convert.ToString(TXTPhoneNumber), Convert.ToString(TXTZipCode), Convert.ToString(TXTCity), Convert.ToString(TXTCountry), Convert.ToString(TXTPersonal), Convert.ToString(TXTBsn)))
+            if (!_db.CreateEmployee(Firstname, Lastname, Adress, PhoneNumber, Zipcode, City, Country, PersonalEmail, BSN))
             {
                 MessageBox.Show("error for creating a employee");
             }
