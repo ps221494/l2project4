@@ -487,7 +487,7 @@ namespace Login.Models
             return Deliveryresult;
         }
 
-        public bool CreateEmployee(string FirstName, string LastName, string Address, string PhoneNumber, string Zipcode, string City, string Country, string Pemail, string Bsn)
+        public bool CreateEmployee(string FirstName, string LastName, string Address, string PhoneNumber, string Zipcode, string City, string Country, string Pemail, DateTime birthday, string Bsn)
         {
             bool CreateEmployeeresult = false;
 
@@ -507,7 +507,7 @@ namespace Login.Models
                 command.Parameters.AddWithValue("@city", City);
                 command.Parameters.AddWithValue("@country", Country);
                 command.Parameters.AddWithValue("@personal_email", Pemail);
-                command.Parameters.AddWithValue("@birth_date", DateTime.Now);
+                command.Parameters.AddWithValue("@birth_date", birthday);
                 command.Parameters.AddWithValue("@burger_service_nummer", Bsn);
 
                 CreateEmployeeresult = command.ExecuteNonQuery() >= 0;

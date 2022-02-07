@@ -42,7 +42,9 @@ namespace Login
             string PersonalEmail = TXTPersonal.Text;
             string BSN = TXTBsn.Text;
 
-            if (!_db.CreateEmployee(Firstname, Lastname, Adress, PhoneNumber, Zipcode, City, Country, PersonalEmail, BSN))
+
+            if (!_db.CreateEmployee(Firstname, Lastname, Adress, PhoneNumber, Zipcode, City, Country, PersonalEmail, DPBirthDate.SelectedDate.Value, BSN))
+
             {
                 MessageBox.Show("error for creating a employee");
             }
