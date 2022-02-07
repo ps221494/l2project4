@@ -154,12 +154,19 @@ namespace Login.Models
                     employeedetails.Id = (ulong)row["id"];
                     employeedetails.FirstName = (string)row["first_name"];
                     employeedetails.LastName = (string)row["last_name"];
+
+                    Console.ReadLine();
+                    resutl.Add(employeedetails);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
-                throw;
+                Console.Error.WriteLine(e.Message);
+            }
+            finally
+            {
+                _conn.Close();
             }
 
             return resutl;
@@ -521,7 +528,7 @@ namespace Login.Models
             return CreateEmployeeresult;
         }
 
-        public bool DeleteEmployee(Employee Id, Employee Bsn)
+        public bool DeleteEmployee(string Id)
         {
             bool DeleteEmployeeresult = false;
 
@@ -529,14 +536,22 @@ namespace Login.Models
             {
                 _conn.Open();
                 MySqlCommand deleteCommand = _conn.CreateCommand();
-                deleteCommand.CommandText = "DELETE FROM employees WHERE";
+                deleteCommand.CommandText = "DELETE FROM employees WHERE id = @id";
+
+                deleteCommand.Parameters.AddWithValue("@id", Id);
+              
+
+                DeleteEmployeeresult = deleteCommand.ExecuteNonQuery() >= 0;
             }
             catch (Exception)
             {
 
                 throw;
             }
-
+            finally
+            {
+                _conn.Close();
+            }
             return DeleteEmployeeresult;
         }
 

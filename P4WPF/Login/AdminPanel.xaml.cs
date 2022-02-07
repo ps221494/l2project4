@@ -65,7 +65,19 @@ namespace Login
                     break;
             }
 
-           
+            List<Employee> ListOfEmployee = _db.GetEmployeeDetails();
+            if (ListOfEmployee == null)
+            {
+                MessageBox.Show("error met inladen");
+            }
+            else
+            {
+                LSTEmployee.Clear();
+                foreach (Employee employee in ListOfEmployee)
+                {
+                    LSTEmployee.Add(employee);
+                }
+            }
 
         }
 
@@ -93,20 +105,28 @@ namespace Login
         }
         public void BtnVerwijder_click(object sender, RoutedEventArgs e)
         {
+            DataRowView selectedroww = DGmedewerkers.SelectedItem as DataRowView;
             
             Employee deleteit = new Employee();
             switch (TXTtoshow.Text)
             {
                 case "1":
-                    if (!_db.DeleteEmployee(deleteit, deleteit))
+                    if (!_db.DeleteEmployee(selectedroww["id"].ToString()))
                     {
-
+                        MessageBox.Show("error met verwijderen");
+                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("verwijderd");
+                        FillDG();
+                        TXTtoshow.Text = "1";
                     }
                     break;
                 case "2":
                     break;
             }
-            FillDG();
+            
         }
         public void BtnWijzig_click(object sender, RoutedEventArgs e)
         {
