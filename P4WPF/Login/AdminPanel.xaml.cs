@@ -130,7 +130,8 @@ namespace Login
         }
         public void BtnWijzig_click(object sender, RoutedEventArgs e)
         {
-
+            DataRowView selectedroww = DGmedewerkers.SelectedItem as DataRowView;
+            EditEmployee edtScreen = new EditEmployee(selectedroww["id"].ToString());
             FillDG();
         }
         private void Logout(object sender, RoutedEventArgs e)

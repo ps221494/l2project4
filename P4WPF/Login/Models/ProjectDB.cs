@@ -555,6 +555,52 @@ namespace Login.Models
             return DeleteEmployeeresult;
         }
 
+        public Employee GetEmployeeById(ulong ID)
+        {
+            Employee employee = null;
+            try
+            {
+                _conn.Open();
+                MySqlCommand insertCommand = _conn.CreateCommand();
+                insertCommand.CommandText = "SELECT id, first_name, last_name, address, phone, zipcode, city, country, personal_email, " +
+                    "burger_service_nummer FROM employees WHERE id = @id";
+                insertCommand.Parameters.AddWithValue("@id", ID);
+                MySqlDataReader reader = insertCommand.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(reader);
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    employee = new Employee();
+
+                    employee.Id = (ulong)row["id"];
+                    employee.FirstName = (string)row["first_name"];
+                    employee.LastName = (string)row["last_name"];
+                    employee.Adress = (string)row["address"];
+                    employee.Phone = (string)row["phone"];
+                    employee.Zipcode = (string)row["zipcode"];
+                    employee.City = (string)row["city"];
+                    employee.Country = (string)row["country"];
+                    employee.Pemail = (string)row["personal_email"];
+                    employee.Bsn = (string)row["burger_service_nummer"];
+                    
+
+                }
+
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
+            finally
+            {
+                _conn.Close();
+            }
+            return employee;
+        }
+
         public DataTable SelectMedewerkers()
         {
             DataTable employees = new DataTable();
