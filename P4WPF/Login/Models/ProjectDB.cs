@@ -154,6 +154,13 @@ namespace Login.Models
                     employeedetails.Id = (ulong)row["id"];
                     employeedetails.FirstName = (string)row["first_name"];
                     employeedetails.LastName = (string)row["last_name"];
+                    employeedetails.Adress = (string)row["address"];
+                    employeedetails.Phone = (string)row["phone"];
+                    employeedetails.Zipcode = (string)row["zipcode"];
+                    employeedetails.City = (string)row["city"];
+                    employeedetails.Country = (string)row["country"];
+                    employeedetails.Pemail = (string)row["personal_email"];
+                    employeedetails.Bsn = (string)row["burger_service_nummer"];
 
                     Console.ReadLine();
                     resutl.Add(employeedetails);
@@ -555,6 +562,46 @@ namespace Login.Models
             return DeleteEmployeeresult;
         }
 
+       public bool UpdateEmployee(Employee e, DateTime date)
+        {
+            bool result = false;
+            try
+            {
+                _conn.Open();
+                MySqlCommand command = _conn.CreateCommand();
+                command.CommandText = "UPDATE `employees` SET first_name = @Fname," +
+                    "last_name = @Lname, address = @adres, phone = @phone, zipcode = @zipcode," +
+                    "city = @city, country = @land, personal_email = @email, birth_date = @date," +
+                    "burger_service_nummer = @bsn WHERE id = @id";
+                command.Parameters.AddWithValue("@id", e.Id);
+                command.Parameters.AddWithValue("@Fname", e.FirstName);
+                command.Parameters.AddWithValue("@Lname", e.LastName);
+                command.Parameters.AddWithValue("@adres", e.Adress);
+                command.Parameters.AddWithValue("@phone", e.Phone);
+                command.Parameters.AddWithValue("@zipcode", e.Zipcode);
+                command.Parameters.AddWithValue("@city", e.City);
+                command.Parameters.AddWithValue("@land", e.Country);
+                command.Parameters.AddWithValue("@email", e.Pemail);
+                command.Parameters.AddWithValue("@date", date);
+                command.Parameters.AddWithValue("@bsn", e.Bsn);
+                result = command.ExecuteNonQuery() >= 1;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                if (_conn.State == ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
+            }
+
+            return result;
+
+        }
+
         public DataTable SelectMedewerkers()
         {
             DataTable employees = new DataTable();
@@ -578,16 +625,27 @@ namespace Login.Models
             return employees;
         }
 
-        public DataTable SelectPizzas()
+        public List<pizzas> SelectPizzas()
         {
-            DataTable Pizzas = new DataTable();
+            List<pizzas> Pizzas = new List<pizzas>();
             try
             {
                 _conn.Open();
                 MySqlCommand command = _conn.CreateCommand();
                 command.CommandText = "SELECT * FROM pizzas; ";
                 MySqlDataReader lezer = command.ExecuteReader();
-                Pizzas.Load(lezer);
+                DataTable table = new DataTable();
+                table.Load(lezer);
+
+                foreach (DataRow rij in table.Rows)
+                {
+                    pizzas pizza = new pizzas();
+
+                    pizza.Pname = (string)rij["pname"];
+                    pizza.Description = (string)rij["description"];
+                    Pizzas.Add(pizza);
+                }
+
             }
             catch (Exception)
             {

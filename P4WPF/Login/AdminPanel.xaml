@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Login"
         mc:Ignorable="d"
-        Title="AdminPanel" Height="450" Width="800">
+        Title="AdminPanel" Height="450" Width="800" WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5px"/>
@@ -41,23 +41,53 @@
         <Button Grid.Column="3" Grid.Row="9" Background="Green" FontStyle="Italic" Click="AddPizza">Pizza aanmaken</Button>
         <Button Grid.Column="9" Grid.Row="9" Background="Red" Click="Logout">Log uit</Button>
 
-        <DataGrid x:Name="DGmedewerkers" Grid.Column="2" Grid.ColumnSpan="9" Grid.RowSpan="8" Margin="4.6,0,4.6,4.8">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Wijzig" Click="BtnWijzig_click"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Verwijder" Click="BtnVerwijder_click" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <ListView x:Name="DGmedewerkers" Grid.Column="2" Grid.ColumnSpan="9" Grid.RowSpan="8" Margin="4.6,0,4.6,4.8">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="FirstName: " />
+                        <TextBlock Text="{Binding FirstName}" />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="LastName: " />
+                        <TextBlock Text="{Binding LastName}" />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="Aderes: " />
+                        <TextBlock Text="{Binding Adress}" />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="Phone: " />
+                        <TextBlock Text="{Binding Phone}" />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="Zipcode: " />
+                        <TextBlock Text="{Binding Zipcode}" />
+                        <TextBlock Text=", " />
+                         <TextBlock Text="City: " />
+                        <TextBlock Text="{Binding City}" />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="Country: " />
+                        <TextBlock Text="{Binding Country}" />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="Pemail: " />
+                        <TextBlock Text="{Binding Pemail}" />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="Bsn: " />
+                        <TextBlock Text="{Binding Bsn}" />
+                        <TextBlock Text=", " />
+                        <Button x:Name="selectEmpoley" Click="selectEmpoley_Click">Wijzigen</Button>
+                        <TextBlock Text="  " />
+                        <Button x:Name="deleteEmpoley" Click="deleteEmpoley_Click">Verwijder</Button>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+         <ListView x:Name="LstvPizza" Grid.Column="2" Grid.ColumnSpan="9" Grid.RowSpan="8" Visibility="Hidden" Margin="4.6,0,4.6,4.8">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
     </Grid>
 </Window>

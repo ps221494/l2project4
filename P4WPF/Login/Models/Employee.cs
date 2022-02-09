@@ -1,4 +1,9 @@
-﻿namespace Login.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+namespace Login.Models
 {
     public class Employee
     {
@@ -61,6 +66,7 @@
             get { return pemail; }
             set { pemail = value; }
         }
+  
 
         private string bsn;
         public string Bsn
