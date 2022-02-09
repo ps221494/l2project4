@@ -25,7 +25,7 @@ namespace Login
     public partial class EditEmployee : Window
     {
         ProjectDB _db = new ProjectDB();
-        ulong ID = 0;
+        ulong toCHange = 0;
 
         private Employee _employee;
         public Employee Employee
@@ -41,28 +41,27 @@ namespace Login
             get { return _lstIDEmployee; }
             set { _lstIDEmployee = value; }
         }
-        public EditEmployee(string ID)
+        public EditEmployee(string id)
         {
             InitializeComponent();
             GetEmployeeById();
             DataContext = this;
+            toCHange = Convert.ToUInt32(id);
         }
 
         private void GetEmployeeById()
         {
-       Employee employee = new Employee();
-            List<Employee> IDlist = _db.GetEmployeeById(employee) ;
-            if (IDlist == null)
+       Employee employee = _db.GetEmployeeById(toCHange);
+            // List<Employee> IDlist = 
+            if (employee == null)
             {
                 MessageBox.Show("ERROR WITH LOADING EMPLOYEE");
             }
             else
             {
-                foreach (Employee employee in IDlist)
-                {
-
-                }
-               LSTIDemployee.Add(Employee);
+                LSTIDemployee.Clear();
+                LSTIDemployee.Add(employee);
+             
             }
         }
     }

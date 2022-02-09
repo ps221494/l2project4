@@ -563,7 +563,7 @@ namespace Login.Models
                 _conn.Open();
                 MySqlCommand insertCommand = _conn.CreateCommand();
                 insertCommand.CommandText = "SELECT id, first_name, last_name, address, phone, zipcode, city, country, personal_email, " +
-                    "burger_service_nummer FROM employees WHERE id = @id";
+                    "burger_service_nummer FROM employees WHERE id = @id order by last_name";
                 insertCommand.Parameters.AddWithValue("@id", ID);
                 MySqlDataReader reader = insertCommand.ExecuteReader();
                 DataTable dt = new DataTable();

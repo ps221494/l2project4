@@ -180,3 +180,5 @@ D:\school\project4\l2project4\P4WPF\Login\obj\Debug\Login.csproj.CoreCompileInpu
 D:\school\project4\l2project4\P4WPF\Login\obj\Debug\Login.csproj.CopyComplete
 D:\school\project4\l2project4\P4WPF\Login\obj\Debug\Login.exe
 D:\school\project4\l2project4\P4WPF\Login\obj\Debug\Login.pdb
+D:\school\project4\l2project4\P4WPF\Login\obj\Debug\EditEmployee.g.cs
+D:\school\project4\l2project4\P4WPF\Login\obj\Debug\EditEmployee.baml
