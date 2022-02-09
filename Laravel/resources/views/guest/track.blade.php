@@ -4,6 +4,8 @@
 <div class="flex container w-full sm:-mx-6 mb-20 mt-4">
     <div class="w-full text-center">
         <h3>Bedankt dat u bij ons heeft besteled, hier onder kunt u de detail van u bestelling zien</h3>
+        <p>de voortgang van de bereiding van de pizza kan zijn:</p>
+        <h4>Ontvangen, Voorbereiden, In de oven, Bezorger onderweg</h4>
     </div>
 
 </div>
@@ -47,7 +49,7 @@
                         @foreach ($order->orderdetial as $detail)
                         <tr class="border-b odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 dark:border-gray-600">
                             <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{$detail->pizza->name}}
+                                {{$detail->pizza->pname}}
                             </td>
                             <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                                 {{$detail->quantity}}

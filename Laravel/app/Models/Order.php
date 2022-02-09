@@ -13,4 +13,5 @@ class Order extends Model
         return $this->hasMany(OrderDetial::class,'order_id');
     }
 
+    
 }

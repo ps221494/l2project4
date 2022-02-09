@@ -129,7 +129,7 @@ class OrderController extends Controller
             return redirect()->route('bestelling.index');
         }
         else{
-            return redirect()->back()->with('error', 'Je kan niet meer deze pizza annuleren!');
+            return redirect()->back()->with('error', 'U kunt alleen pizzas verwijderen dat ontvangen als status hebben!');
         }
     }
 }

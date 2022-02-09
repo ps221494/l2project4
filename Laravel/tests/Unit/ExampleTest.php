@@ -22,9 +22,5 @@ class ExampleTest extends TestCase
         
     }
 
-    public function setUp(): Void{
-        $pizza = Pizza::find(1);
-        $this->assertEquals(12.84,$pizza->amount,0.001,'Pizza amount not correctly!!');
-    }
 
 }

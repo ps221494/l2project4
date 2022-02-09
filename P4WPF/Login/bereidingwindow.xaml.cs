@@ -116,6 +116,7 @@ namespace Login
         {
             InitializeComponent();
             RepopulateOrders();
+            PopulateOrders();
             DataContext = this;
         }
 

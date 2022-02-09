@@ -22,7 +22,7 @@
                         <div class="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
                             <div class="w-1/3 bg-cover flex items-center"><a href="{{route('guest.show',$pizza->id)}}"><img src="img/pizza_home_page_background.png" alt="" /></a></div>
                             <div class="w-2/3 p-2">
-                                <h1 class="text-gray-900 font-bold text-2xl">{{$pizza->name}}</h1>
+                                <h1 class="text-gray-900 font-bold text-2xl">{{$pizza->pname}}</h1>
                                 <p class="mt-2 text-gray-600 text-sm">{{$pizza->description}}</p>
                                 <form action="{{ route('cart.store') }}" method="post">
                                     <select name="size" class="rounded w-full">
@@ -35,7 +35,7 @@
 
                                         @csrf
                                         <input type="hidden" name="id" value="{{$pizza->id}}" />
-                                        <input type="hidden" name="name" value="{{$pizza->name}}" />
+                                        <input type="hidden" name="name" value="{{$pizza->pname}}" />
                                         <input type="hidden" name="price" value="{{$pizza->amount}}" />
                                         <input type="hidden" name="quantity" value="1" />
                                         <input type="submit" class="px-3 py-2 bg-green-300 text-white text-xs font-bold uppercase rounded" value="Add to Card" />

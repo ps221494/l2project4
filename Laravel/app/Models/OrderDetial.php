@@ -16,7 +16,5 @@ class OrderDetial extends Model
     public function orders(){
         return $this->belongsTo(Order::class,'order_id');
     }
-
-    
     
 }
