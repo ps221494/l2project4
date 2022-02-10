@@ -22,45 +22,47 @@ namespace Login
         private ObservableCollection<Ingredient> InGredients
         {
             get { return obsIngredientList; }
-            set { obsIngredientList = value; }
+            set { obsIngredientList = value; OnPropertyChanged(); }
         }
 
-        private ObservableCollection<User_Roles> obsUserlist = new ObservableCollection<User_Roles>();
+        private Ingredient selectedIngredient;
 
-        private ObservableCollection<User_Roles> Users
+        public Ingredient SelectedIngredient
         {
-            get { return obsUserlist; }
-            set { obsUserlist = value; }
+            get { return selectedIngredient; }
+            set { selectedIngredient = value; }
         }
-
 
 
         ProjectDB _db = new ProjectDB();
 
-
         public NewPizzaWin()
         {
-          
+
             InitializeComponent();
-            PopulateIngredient();
             DataContext = this;
+            PopulateIngredient();
+
         }
 
         public void PopulateIngredient()
         {
+            InGredients.Clear();
             foreach (Ingredient item in _db.GetAllIngredients())
             {
                 InGredients.Add(item);
             }
-
-            foreach (User_Roles item in _db.GetUsers())
-            {
-                Users.Add(item);
-            }
-
+            cmbIngredient1.ItemsSource = InGredients;
+            cmbIngredient2.ItemsSource = InGredients;
+            cmbIngredient3.ItemsSource = InGredients;
+            cmbIngredient4.ItemsSource = InGredients;
+            cmbIngredient5.ItemsSource = InGredients;
 
         }
 
-
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Ingredient: " + SelectedIngredient.Name );
+        }
     }
 }

@@ -8,59 +8,61 @@
         Title="AddItems" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel>
-            <TextBlock HorizontalAlignment="Center">Voornaam</TextBlock>
-            <TextBox x:Name="TXTFirstName" HorizontalAlignment="Center" ></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Column="1">
-            <TextBlock HorizontalAlignment="Center">Achternaam</TextBlock>
-            <TextBox x:Name="TXTLastName" HorizontalAlignment="Center" ></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Column="2">
-            <TextBlock HorizontalAlignment="Center">Adress</TextBlock>
-            <TextBox x:Name="TXTAdress" HorizontalAlignment="Center" ></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Column="3">
-            <TextBlock HorizontalAlignment="Center">phone</TextBlock>
-            <TextBox x:Name="TXTPhoneNumber" HorizontalAlignment="Center" ></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="1">
-            <TextBlock HorizontalAlignment="Center">Zipcode</TextBlock>
-            <TextBox x:Name="TXTZipCode" HorizontalAlignment="Center" ></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="1">
-            <TextBlock HorizontalAlignment="Center">City</TextBlock>
-            <TextBox x:Name="TXTCity" HorizontalAlignment="Center" ></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Column="2" Grid.Row="1">
-            <TextBlock HorizontalAlignment="Center">Country</TextBlock>
-            <TextBox x:Name="TXTCountry" HorizontalAlignment="Center" ></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Column="3" Grid.Row="1">
-            <TextBlock HorizontalAlignment="Center">Personal email</TextBlock>
-            <TextBox x:Name="TXTPersonal" HorizontalAlignment="Center" ></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Column="0" Grid.Row="2">
-            <TextBlock HorizontalAlignment="Center">Date Of Birth</TextBlock>
-            <DatePicker x:Name="DPBirthDate" HorizontalAlignment="Center" ></DatePicker>
-        </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="2">
-            <TextBlock HorizontalAlignment="Center">BSN Number</TextBlock>
-            <TextBox x:Name="TXTBsn" HorizontalAlignment="Center" ></TextBox>
-        </StackPanel>
-       
-        <Button  Grid.Column="2" Grid.Row="2" Background="Red">Go back</Button>
-        <Button  Grid.Column="3" Grid.Row="2" Background="Green" Click="Button_Click">Create Employee</Button>
+
+        <Label Grid.Row="1" Grid.Column ="1" Content="First name" FontSize="15" Foreground="Black"/>
+        <TextBox Grid.Row="2" Grid.Column="1" DataContext="{Binding NewEmployee}" Text="{Binding FirstName ,UpdateSourceTrigger=PropertyChanged}" Height="30"/>
+
+        <Label Grid.Row="3" Grid.Column ="1" Content="Last name" FontSize="15" Foreground="Black"/>
+        <TextBox Grid.Row="4" Grid.Column="1" DataContext="{Binding NewEmployee}" Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" Height="30"/>
+
+        <Label Grid.Row="5" Grid.Column ="1" Content="Adres" FontSize="15" Foreground="Black"/>
+        <TextBox Grid.Row="6" Grid.Column="1" DataContext="{Binding NewEmployee}" Text="{Binding Adress, UpdateSourceTrigger=PropertyChanged}" Height="30"/>
+
+        <Label Grid.Row="7" Grid.Column ="1" Content="zipcode" FontSize="15" Foreground="Black"/>
+        <TextBox Grid.Row="8" Grid.Column="1" DataContext="{Binding NewEmployee}" Text="{Binding Zipcode, UpdateSourceTrigger=PropertyChanged}" Height="30"/>
+
+        <Label Grid.Row="1" Grid.Column ="3" Content="Phone" FontSize="15" Foreground="Black"/>
+        <TextBox Grid.Row="2" Grid.Column="3" DataContext="{Binding NewEmployee}" Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" Height="30"/>
+
+        <Label Grid.Row="3" Grid.Column ="3" Content="City" FontSize="15" Foreground="Black"/>
+        <TextBox Grid.Row="4" Grid.Column="3" DataContext="{Binding NewEmployee}" Text="{Binding City, UpdateSourceTrigger=PropertyChanged}" Height="30"/>
+
+        <Label Grid.Row="5" Grid.Column ="3" Content="Country" FontSize="15" Foreground="Black"/>
+        <TextBox Grid.Row="6" Grid.Column="3" DataContext="{Binding NewEmployee}" Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}" Height="30"/>
+
+        <Label Grid.Row="7" Grid.Column ="3" Content="Email" FontSize="15" Foreground="Black"/>
+        <TextBox Grid.Row="8" Grid.Column="3" DataContext="{Binding NewEmployee}" Text="{Binding Pemail, UpdateSourceTrigger=PropertyChanged}" Height="30"/>
+
+        <Label Grid.Row="1" Grid.Column ="5" Content="BSN nummer" FontSize="15" Foreground="Black"/>
+        <TextBox Grid.Row="2" Grid.Column="5" DataContext="{Binding NewEmployee}" Text="{Binding Bsn, UpdateSourceTrigger=PropertyChanged}" Height="30"/>
+
+        <Label Grid.Row="3" Grid.Column ="5" Content="Geboorte datum" FontSize="15" Foreground="Black"/>
+        <DatePicker Grid.Row="4" Grid.Column="5" SelectedDate="1-1-2002" x:Name="Date"></DatePicker>
+
+        <Button  Grid.Column="5" Grid.Row="8" Height="30" Width="150" Background="Red" Click="Button_Click_1">Go back</Button>
+        <Button  Grid.Column="5" Grid.Row="6" Height="30" Width="150" Background="Green" Click="Button_Click">Create Employee</Button>
 
     </Grid>
 </Window>

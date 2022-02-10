@@ -501,7 +501,7 @@ namespace Login.Models
             return Deliveryresult;
         }
 
-        public bool CreateEmployee(string FirstName, string LastName, string Address, string PhoneNumber, string Zipcode, string City, string Country, string Pemail, DateTime birthday, string Bsn)
+        public bool CreateEmployee(Employee e, DateTime birthday)
         {
             bool CreateEmployeeresult = false;
 
@@ -513,16 +513,16 @@ namespace Login.Models
                     "birth_date, burger_service_nummer)" +
                     " VALUES (@first_name, @last_name, @address, @phone, @zipcode, @city, @country, @personal_email, " +
                     "@birth_date, @burger_service_nummer)";
-                command.Parameters.AddWithValue("@first_name", FirstName);
-                command.Parameters.AddWithValue("@last_name", LastName);
-                command.Parameters.AddWithValue("@address", Address);
-                command.Parameters.AddWithValue("@phone", PhoneNumber);
-                command.Parameters.AddWithValue("@zipcode", Zipcode);
-                command.Parameters.AddWithValue("@city", City);
-                command.Parameters.AddWithValue("@country", Country);
-                command.Parameters.AddWithValue("@personal_email", Pemail);
+                command.Parameters.AddWithValue("@first_name", e.FirstName);
+                command.Parameters.AddWithValue("@last_name", e.LastName);
+                command.Parameters.AddWithValue("@address", e.Adress);
+                command.Parameters.AddWithValue("@phone", e.Phone);
+                command.Parameters.AddWithValue("@zipcode", e.Zipcode);
+                command.Parameters.AddWithValue("@city", e.City);
+                command.Parameters.AddWithValue("@country", e.Country);
+                command.Parameters.AddWithValue("@personal_email", e.Pemail);
                 command.Parameters.AddWithValue("@birth_date", birthday);
-                command.Parameters.AddWithValue("@burger_service_nummer", Bsn);
+                command.Parameters.AddWithValue("@burger_service_nummer", e.Bsn);
 
                 CreateEmployeeresult = command.ExecuteNonQuery() >= 0;
             }
@@ -530,6 +530,13 @@ namespace Login.Models
             {
 
                 throw;
+            }
+            finally
+            {
+                if (_conn.State == ConnectionState.Open)
+                {
+                    _conn.Close();
+                }
             }
 
             return CreateEmployeeresult;

@@ -33,21 +33,15 @@ namespace Login
 
         ProjectDB _db = new ProjectDB();
 
-        private Employee _selectedDelete;
-        public Employee ToDelete
-        {
-            get { return _selectedDelete; }
-            set { _selectedDelete = value;}
-        }
         private ObservableCollection<Employee> _LstEmployee = new ObservableCollection<Employee>();
 
         public ObservableCollection<Employee> LSTEmployee
         {
             get { return _LstEmployee; }
-            set { _LstEmployee = value; OnPropertyChanged(); }
+            set { _LstEmployee = value; OnPropertyChanged("LSTEmployee"); }
         }
 
-        private ObservableCollection<pizzas> _ObcPizzas;
+        private ObservableCollection<pizzas> _ObcPizzas = new ObservableCollection<pizzas>();
 
         public ObservableCollection<pizzas> ObsCPizza
         {
@@ -59,6 +53,8 @@ namespace Login
         public AdminPanel()
         {
             InitializeComponent();
+            TXTtoshow.Text = "1";
+            this.DataContext = this;
             FillDG();
         }
         private void FillDG()
@@ -73,17 +69,15 @@ namespace Login
                     {
                            LSTEmployee.Add(item);
                     }
-                    DGmedewerkers.ItemsSource = LSTEmployee;
                     break;
                 case "2":
-                    //ObsCPizza.Clear();
                     LstvPizza.Visibility = Visibility.Visible;
                     DGmedewerkers.Visibility = Visibility.Hidden;
+                    ObsCPizza.Clear();
                     foreach (pizzas item in _db.SelectPizzas())
                     {
                         ObsCPizza.Add(item);
                     }
-                    LstvPizza.ItemsSource = ObsCPizza;
                     break;
             }
 
@@ -112,40 +106,7 @@ namespace Login
             AddItems itemwin = new AddItems();
             itemwin.Show();
         }
-        /*public void BtnVerwijder_click(object sender, RoutedEventArgs e)
-        {
-            DataRowView selectedroww = DGmedewerkers.SelectedItem as DataRowView;
-            
-            Employee deleteit = new Employee();
-            switch (TXTtoshow.Text)
-            {
-                case "1":
-                    if (!_db.DeleteEmployee(selectedroww["id"].ToString()))
-                    {
-                        MessageBox.Show("error met verwijderen");
-                        
-                    }
-                    else
-                    {
-                        MessageBox.Show("verwijderd");
-                        FillDG();
-                        TXTtoshow.Text = "1";
-                    }
-                    break;
-                case "2":
-                    break;
-            }
-            
-        }
-        public void BtnWijzig_click(object sender, RoutedEventArgs e)
-        {
-            Employee employee = DGmedewerkers.SelectedItem as Employee;
-
-
-            DataRowView selectedroww = DGmedewerkers.SelectedItem as DataRowView;
-            EditEmployee edtScreen = new EditEmployee(selectedroww["id"].ToString());
-            FillDG();
-        }*/
+        
         private void Logout(object sender, RoutedEventArgs e)
         {
             MainWindow loginscreen = new MainWindow();
@@ -168,6 +129,7 @@ namespace Login
             if (employee != null)
             {
                 _db.DeleteEmployee(employee.Id.ToString());
+                OnPropertyChanged("LSTEmployee");
             }
             else
             {
